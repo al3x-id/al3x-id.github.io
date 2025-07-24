@@ -1,0 +1,801 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>Amazon Sales & Payment Behavior Analysis - SQL Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/04.jpg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">This project analyzes Amazon sales data using structured SQL queries to explore revenue trends, product category performance, geographic distribution of sales, and profitability. The aim is to understand how sales fluctuate across different regions, time periods, and product types.</p>
+						</div>
+
+							<h2>Objectives</h2>
+									<h4>1. Write queries to generate metrics for a monthly sales dashboard:</h4>
+									<ul>
+										<li>Total Sales per Month, Total Orders per Month & Average Order Value.</li>
+										<li>Best-Selling Categories & Products.</li>
+									</ul>
+
+									<h4>2. Analyse customer behavior</h4>
+									<ul>
+										<li>Top 5 customers by total spend.</li>
+										<li>Number of orders per customer.</li>
+										<li>Average purchase value per customer</li>
+                    <li>Repeat vs. One-time customers</li>
+									</ul>
+
+								
+							<h4>3. Analyse product/category-level performance</h4>
+									<ul>
+										<li>Most profitable categories.</li>
+										<li>Products with the Highest Quantity Sold.</li>
+										<li>Products with High Cancellation Rates.</li>
+							</ul>
+
+							<h4>4. Breakdown sales by customer location</h4>
+									<ul>
+										<li>Top 5 cities by sales volume.</li>
+										<li>Regional preference for product categories.</li>
+										<li>City-wise revenue trend over time.</li>
+							</ul>
+
+							<h4>5. Performance of different payment methods</h4>
+									<ul>
+										<li>Payment method preference per region.</li>
+										<li>Success vs cancellation rates by payment method.</li>
+										<li>Indicate if success vs cancellation rate is high or low.</li>
+                    <li>Correlation between payment method and order status.</li>
+							</ul>
+
+							<h4>6. Identify trends and seasonality</h4>
+									<ul>
+										<li>Sales trend over weeks/months.</li>
+										<li>Sales peaks and dips.</li>
+										<li>Impact of weekday/weekend on order volume.</li>
+							</ul>
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>SQL Data Aggregation</li>
+										<li>CTEs (WITH Clauses)</li>
+										<li>Window Functions (RANK)</li>
+										<li>Temporary Tables</li>
+										<li>Data Segmentation</li>
+										<li>Data Deduplication</li>
+										<li>Trend & Behavioral Analysis</li>
+										<li>KPI Calculation</li>
+										<li>Customer & Product Analysis</li>
+									</ul>
+							</div>
+
+							<h2>Dataset</h2>
+							<div class="row">
+							<p>Size: Contains 250 rows with 11 columns of Amazon Sales in the year 2025</p>
+							<p>Key Columns: <b> Order id</b>, <b>Date</b>, <b>Product</b>, <b>Category</b>, <b>Price</b>, <b>Quantity</b>, <b>Total Sales</b>, <b>Customer Name</b>, <b>Customer Location</b>, <b>Payment Method</b>, <b>Status</b>.</p>
+							<figure>
+  						<a href="images/project4/raw01.png" class="image fit thumb"><img src="images/project4/raw01.png" alt="Raw Dataset"></a>
+ 							 <figcaption>Raw Dataset</figcaption>
+							</figure>
+							</div>
+							
+							<h2>Cleaning Process</h2>
+							<p align = "justify">To ensure accurate analysis and proper formatting, a structured data cleaning process was carried out on the <b>"amazon_sales2025"</b> dataset. Below is a breakdown of each transformation step, including the purpose and outcome.</p>
+						<h3>1. View Raw Data</h3>
+							<pre><code>
+SELECT * FROM amazon_sales2025;
+							</code></pre>
+							<ul>
+								<li>This query displays the original dataset to examine its structure, identify inconsistencies, and understand the data types before making any changes.</li>
+							</ul>
+					
+							<h3>2. Create a Backup of the Original Data</h3>
+							<pre><code>
+CREATE TABLE amazon_sales_2025 LIKE amazon_sales2025;
+INSERT amazon_sales_2025 SELECT * FROM amazon_sales2025;
+							</code></pre>
+							<ul>
+								<li>To preserve the raw data, I created a copy of the table named amazon_sales_2025. This ensures that the original dataset remains untouched in case I need to revert or cross-check values.</li>
+							</ul>
+
+							<h3>3. Clean, Update and Standardize "Order id" Column </h3>
+							<pre><code>
+UPDATE amazon_sales_2025
+SET `order id` = CAST(SUBSTRING(`Order id`, 4, 4) AS UNSIGNED);
+
+							</code></pre>
+							<ul>
+								<li>Some order IDs likely contain prefixes or unwanted characters. This step extracts the numeric part (4 characters starting from the 4th character) and converts it into a number for consistent formatting and easier analysis.</li>
+							</ul>
+
+							<h3>4. Convert order id Column Type</h3>
+							<pre><code>
+ALTER TABLE amazon_sales_2025
+MODIFY COLUMN `order id` INT;
+							</code></pre>
+							<ul>
+								<li>Once cleaned, the order id column is changed to an integer data type, allowing for faster operations and numeric filtering during analysis.</li>
+							</ul>
+
+							<h3>5. Standardize date Column Format</h3>
+							<pre><code>
+UPDATE amazon_sales_2025
+SET `date` = STR_TO_DATE(`date`, '%d-%m-%Y');
+							</code></pre>
+							<ul>
+								<li>Checks the format of the date values and attempts to convert them from string format (dd-mm-yyyy) to SQL's DATE format using STR_TO_DATE().</li>
+								<li>This transformation updates all rows to reflect the cleaned date format, making them suitable for date-based queries like filtering, sorting, and aggregating.</li>
+							</ul>
+
+							<h3>6.  Convert date Column Type to DATE</h3>
+							<pre><code>
+ALTER TABLE amazon_sales_2025
+MODIFY COLUMN `date` DATE;
+							</code></pre>
+							<ul>
+								<li>Changes the column data type from string to DATE, improving efficiency for time-series operations and ensuring date integrity across SQL operations.</li>
+							</ul>
+						<figure>
+  					<a href="images/project4/Clean01.png" class="image fit thumb"><img src="images/project4/Clean01.png" alt="Cleaned Dataset"></a>
+  					<figcaption>Cleaned Dataset</figcaption>
+						</figure>
+
+						<h2>SQL Analysis & Dashboard Metrics</h2>
+						<h3>Monthly Sales Dashboard Metrics</h3>
+							<div class="row">
+									<h4>Metric Calculated:</h4>
+									<ul>
+										<li>Monthly revenue</li>
+										<li>Number of orders per month</li>
+										<li>Average Order Value (AOV)</li>
+									</ul>
+							</div>
+									<pre><code>
+SELECT
+  DATE_FORMAT(`date`, '%Y-%m') AS `Month`, 
+  SUM(`total sales`) AS Monthly_sales,
+  COUNT(`order id`) AS Total_orders,
+  ROUND(SUM(`total sales`)/COUNT(`order id`), 2) AS AVG_order
+FROM amazon_sales_2025
+GROUP BY `Month`;
+									</code></pre>
+									<ul>
+										<li><b>DATE_FORMAT(date, '%Y-%m')</b>: Converts the date to month-year format.</li>
+										<li><b>SUM(total sales)</b>: Total revenue in the month.</li>
+										<li><b>COUNT(order id)</b>: Number of orders placed.</li>
+										<li><b>AVG_order</b>: Revenue divided by number of orders = average order value (AOV).</li>
+									</ul>
+									<h4>Insights:</h4>
+									<ul>
+										<li>February (2025-02) had the highest revenue despite fewer orders than March, suggesting that customers made higher-value purchases that month. The AOV is the highest at ₦1,085.80.</li>
+										<li>March (2025-03) saw the most orders (131) but slightly lower total revenue, leading to a lower AOV than February. This may indicate smaller or more frequent purchases.</li>
+										<li>April (2025-04) experienced a sharp drop in sales and orders, with only 6 orders totaling ₦3,420. This could indicate:</li>
+										<ul>
+											<li>Inventory or logistics issues</li>
+											<li>Seasonality or lower demand</li>
+											<li>A data reporting gap (e.g., incomplete data)</li>
+										</ul>
+									</ul>
+								<figure>
+  					<a href="images/project4/Kpi01.png" class="image fit thumb"><img src="images/project4/Kpi01.png" alt="Metrics"></a>
+  					<figcaption>Metrics</figcaption>
+						</figure>
+
+						<h3>Best-Selling Products & Categories</h3>
+						<pre><code>
+SELECT 
+`Order id`, 
+Product, 
+Category,
+`Total sales`
+FROM amazon_sales_2025
+ORDER BY `Total sales` DESC
+LIMIT 1;
+						</code></pre>
+						<ul>
+							<li><b>ORDER BY total sales DESC</b>: Orders by largest sale.</li>
+							<li><b>LIMIT 1</b>: Returns only the top-selling product from a single transaction.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Refrigerator and Home Appliances sale are the highest-grossing Product and Category respectively in the dataset.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR1.png" class="image fit thumb"><img src="images/project4/PR1.png" alt="Best Selling Product & Category"></a>
+						<figcaption>Best Selling Product & Category</figcaption>
+						</figure>
+
+						<h3>Top 5 Customers by Spend</h3>
+						<pre><code>
+SELECT `Customer name`,
+SUM(`Total sales`) AS Total_spend
+FROM amazon_sales_2025
+GROUP BY `Customer name`
+ORDER BY SUM(`Total sales`) DESC
+LIMIT 5;
+						</code></pre>
+						<ul>
+							<li>Finds top 5 customers based on total purchase value.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Olivia Wilson is the highest spender with ₦36,170, while Emily Johnson is the lowest with ₦23,475.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR2.png" class="image fit thumb"><img src="images/project4/PR2.png" alt="Top 5 Customers by Spend"></a>
+						<figcaption>Top 5 Customers by Spend</figcaption>
+						</figure>
+
+						<h3>Number of Orders per Customer</h3>
+						<pre><code>
+SELECT `Customer name`,
+COUNT(`Order id`) AS No_of_order
+FROM amazon_sales_2025
+GROUP BY `Customer name`;
+						</code></pre>
+						<ul>
+							<li>Shows how many orders each customer placed.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Emma Clark placed the highest number of orders (32), indicating strong engagement. Sophia Miller had the fewest orders (16), suggesting room for reactivation strategies.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR3.png" class="image fit thumb"><img src="images/project4/PR3.png" alt="Number of Orders per Customer"></a>
+						<figcaption>Number of Orders per Customer</figcaption>
+						</figure>
+						<h3>Average Purchase Value per Customer</h3>
+						<pre><code>
+SELECT `Customer name`,
+SUM(`Total sales`) AS Total_spend,
+COUNT(`Order id`) AS No_of_order,
+ROUND(SUM(`Total sales`)/COUNT(`Order id`), 2) AS APV
+FROM amazon_sales_2025
+GROUP BY `Customer name`;
+						</code></pre>
+						<ul>
+							<li>Combines spend and frequency to calculate Average Purchase Value (APV).</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>The data shows that Olivia Wilson stands out as the most valuable customer, with the highest total spend (₦36,170) and the highest average per-order value (₦1,247.24), reflecting premium purchasing behavior. In contrast, Emma Clark places the most orders (32), indicating high engagement, though her average per-order value (₦928.13) is moderate. Other customers like Jane Smith, John Doe, and Emily Johnson also show strong spending power, each maintaining an APV above ₦1,000. Meanwhile, Sophia Miller has both the lowest total spend and one of the lowest APVs, suggesting an opportunity for targeted campaigns to boost engagement and order value. Overall, while high-frequency and high-spend customers contribute significantly to revenue, strategies to encourage less active or lower-spending customers could further drive growth.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR4.png" class="image fit thumb"><img src="images/project4/PR4.png" alt="Average Purchase Value per Customer"></a>
+						<figcaption>Average Purchase Value per Customer</figcaption>
+						</figure>
+
+						<h3>Repeat vs. One-time Customers</h3>
+						<pre><code>
+SELECT `Customer name`,
+ COUNT(`Order id`) AS Total_order,
+CASE
+	WHEN COUNT(`Order id`) = 1 THEN 'One-time customer'
+    ELSE 'Repeat customer'
+END AS Customer_classification
+FROM amazon_sales_2025
+GROUP BY `Customer name`;
+						</code></pre>
+						<ul>
+							<li>Uses CASE to classify customers based on order frequency.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>All customers listed are classified as repeat customers, each having placed between 16 and 32 orders. The top three most active repeat customers are Emma Clark (32 orders), Jane Smith (30 orders), and Olivia Wilson (29 orders), showing strong purchasing engagement. Even the least active repeat customer, Sophia Miller, has still made 16 orders, indicating a healthy base of loyal customers who consistently return to buy more.</li>
+							<li>Overall, this suggests the business has successfully cultivated a core group of loyal repeat buyers, which is a positive indicator for customer retention and potential lifetime value.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR5.png" class="image fit thumb"><img src="images/project4/PR5.png" alt="Repeat vs. One-time Customers"></a>
+						<figcaption>Repeat vs. One-time Customers</figcaption>
+						</figure>
+						<h3>Most Profitable Categories</h3>
+						<pre><code>
+SELECT Category,
+COUNT(`Order id`) AS Total_order
+FROM amazon_sales_2025
+GROUP BY Category
+ORDER BY COUNT(`Order id`) DESC
+LIMIT 1;
+						</code></pre>
+						<ul>
+							<li>Identifies which category has the most orders (not revenue).</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>The Electronics category accounts for a total of 118 orders. This suggests that electronics are a strong-performing product line, likely driving a significant share of sales volume.</li>
+							<li>This highlights the importance of continuing to stock, promote, and possibly expand offerings in the electronics category to maintain and grow this high level of customer interest and demand.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR6.png" class="image fit thumb"><img src="images/project4/PR6.png" alt="Most Profitable Categories"></a>
+						<figcaption>Most Profitable Categories</figcaption>
+						</figure>
+
+						<h3>Product with Highest Quantity Sold</h3>
+						<pre><code>
+SELECT Product,
+COUNT(Quantity) AS Quantity_sold
+FROM amazon_sales_2025
+GROUP BY Product
+ORDER BY COUNT(Quantity) DESC
+LIMIT 1;
+						</code></pre>
+						<ul>
+							<li>Counts how many units sold per product (better with SUM(Quantity) instead of COUNT(Quantity) if each row has quantity value).</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>A total of 35 smartphones have been sold, indicating that smartphones are a popular item within the electronics category. Given that electronics had 118 total orders, smartphones alone contribute a significant portion of category sales, suggesting strong customer demand and potential for focused promotions, bundling, or stock prioritization around this product.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR7.png" class="image fit thumb"><img src="images/project4/PR7.png" alt="Product with Highest Quantity Sold"></a>
+						<figcaption>Product with Highest Quantity Sold</figcaption>
+						</figure>
+						<h3>High Cancellation Products</h3>
+						<pre><code>
+SELECT Product,
+COUNT(`Status`) AS Cancellation_Rates
+FROM amazon_sales_2025
+WHERE `Status` = 'Cancelled'
+GROUP BY Product
+ORDER BY COUNT(`Status`) DESC
+LIMIT 1;
+						</code></pre>
+						<ul>
+							<li>Filters for cancelled orders only, then identifies products with the most cancellations.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>The data shows that headphones experienced 10 cancellations. This relatively high cancellation count could signal potential issues such as product quality concerns, mismatch with customer expectations, pricing sensitivity, or delivery problems.</li>
+							<ul>
+							<p>It may be valuable to:<p>
+							<li>Investigate customer feedback specific to headphones.</li>
+							<li>Review product descriptions and images for accuracy.</li>
+							<li>Check for supply chain or fulfillment issues affecting this product.</li>
+							</ul>
+						</ul>
+						<figure>
+						<a href="images/project4/PR8.png" class="image fit thumb"><img src="images/project4/PR8.png" alt="High Cancellation Products"></a>
+						<figcaption>High Cancellation Products</figcaption>
+						</figure>
+						<h3>Top 5 Cities by Revenue</h3>
+						<pre><code>
+SELECT `Customer location` AS Cities,
+SUM(Quantity) AS No_of_unitsold,
+COUNT(`Order id`) AS Total_order,
+SUM(`Total sales`) AS Total_revenue
+FROM amazon_sales_2025
+GROUP BY `Customer location`
+ORDER BY SUM(`Total sales`) DESC
+LIMIT 5;
+						</code></pre>
+						<ul>
+							<li>Breaks down sales volume per city.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Miami leads in total revenue ($31,700) despite selling slightly fewer units (87) than Houston (89).</li>
+							<li>Houston achieved the highest number of units sold (89) and the most orders (32), yet its revenue ($28,390) is lower than Miami and Denver.</li>
+							<li>Denver shows an interesting pattern: with fewer units sold (75) and fewer orders (26), it still generates a higher total revenue ($29,785) than Houston and Dallas, suggesting Denver customers may be buying higher-priced or premium products.</li>
+							<li>Seattle has the lowest sales across all metrics: 65 units sold, 22 orders, and $26,890 in revenue.</li>
+							<li>Dallas sold 82 units over 29 orders with a total revenue of $27,145, which is moderate compared to others.</li>
+						</ul>
+						<h4>Key Insights:</h4>
+						<ul>
+							<li>Miami and Denver stand out for higher revenue per order, suggesting stronger premium product demand or higher average transaction values.</li>
+							<li>Houston is strong in volume but has a lower revenue per unit/order, indicating possible focus on lower-priced or discounted items.</li>
+							<li>Seattle shows an opportunity for improvement, possibly through targeted marketing or introducing popular products.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR9.png" class="image fit thumb"><img src="images/project4/PR9.png" alt="Top 5 Cities by Revenue"></a>
+						<figcaption>Top 5 Cities by Revenue</figcaption>
+						</figure>
+							<h3>Preferred Category by Region</h3>
+						<pre><code>
+WITH Pref_CTE AS(
+SELECT
+`Customer Location`,
+Category,
+SUM(`Total Sales`) AS Total_sales,
+RANK() OVER(PARTITION BY `Customer Location` ORDER BY SUM(`Total Sales`) DESC) AS Preference
+FROM amazon_sales_2025
+GROUP BY `Customer Location`, Category)
+SELECT `Customer Location`,
+Category
+FROM Pref_CTE
+WHERE Preference = 1;
+						</code></pre>
+						<ul>
+							<li>Uses a CTE and Window Function (RANK()) to find top-selling category in each location.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>The Electronics category is sold in 7 out of 10 cities: Boston, Chicago, Houston, Los Angeles, Miami, New York, and San Francisco, showing widespread demand across major urban markets.</li>
+							<li>Home Appliances are sold only in 3 cities: Dallas, Denver, and Seattle, suggesting a more localized or niche market presence.</li>
+						</ul>
+
+						<h4>Key Insights:</h4>
+						<li>Electronics clearly have broader geographic appeal and stronger distribution, likely driving higher overall sales volume and revenue.</li>
+						<li>Home Appliances are concentrated in fewer cities, which could mean there’s room to expand into more locations, or that demand is more regional and focused.</li>
+						<li>Strategic decisions could include reinforcing electronics promotions nationwide, while testing targeted marketing to grow Home Appliances in new cities.</li>
+						<figure>
+						<a href="images/project4/PR10.png" class="image fit thumb"><img src="images/project4/PR10.png" alt="Preferred Category by Region"></a>
+						<figcaption>Preferred Category by Region</figcaption>
+						</figure>
+							<h3>City-wise Revenue Trend</h3>
+						<pre><code>
+SELECT
+`Customer Location`,
+`date`,
+SUM(`Total Sales`) AS Total_sales
+FROM amazon_sales_2025
+GROUP BY `Customer Location`, `date`;
+						</code></pre>
+						<ul>
+							<li>Useful for plotting line charts (revenue over time per city).</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>The business sees its strongest revenue spikes from a few key cities (Denver, Houston, Boston, Miami, Dallas).</li>
+							<li>Peak periods are mostly in February and March 2025.</li>
+							<li>Expanding high-ticket promotions, bundled offers, or targeted marketing in these top cities and exploring why other cities have fewer large transactions, could increase total revenue and balance performance across locations.</li>
+						</ul>
+						<figure>
+						<a href="images/project4/PR11.png" class="image fit thumb"><img src="images/project4/PR11.png" alt="City-wise Revenue Trend"></a>
+						<figcaption>City-wise Revenue Trend</figcaption>
+						</figure>
+						<h3>Preferred Payment by Region</h3>
+						<pre><code>
+WITH Pref_CTE2 AS
+(SELECT `Customer Location`,
+`Payment Method`,
+COUNT(`Order id`) AS No_of_order,
+RANK() OVER(PARTITION BY `Customer Location` ORDER BY COUNT(`Order id`) DESC) AS Preference
+FROM amazon_sales_2025
+GROUP BY `Customer Location`, `Payment Method`)
+SELECT `Customer Location`,
+`Payment Method`
+FROM Pref_CTE2
+WHERE Preference = 1;
+						</code></pre>
+						<ul>
+ 						 <li>Top-used payment method per region using RANK() window function.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+ 						 <li>Credit Card is popular in Dallas, Houston, Los Angeles, and San Francisco, indicating strong use in large, often higher-income urban centers, possibly linked to higher transaction values or customer trust in traditional credit.</li>
+						 <li>Debit Card appears in Miami, New York, and Seattle, suggesting these markets may favor more immediate, cash-equivalent payments — potentially pointing to a younger demographic or more price-sensitive customer segment.</li>
+						 <li>Amazon Pay is only recorded once (Chicago), indicating low adoption compared to PayPal and Credit Card.</li>
+						</ul>
+						<h4>Key Insights:</h4>
+						<ul>
+							<li>PayPal and Credit Card together dominate most cities, highlighting them as crucial for checkout optimization and promotions.</li>
+							<li>Debit Card usage in select cities shows an opportunity for targeted discounts or messaging focused on budget-conscious customers.</li>
+							<li>Amazon Pay shows very limited use; marketing efforts may be needed if the business wants to grow that channel.</li>
+						</ul>
+						<figure>
+  						<a href="images/project4/PR12.png" class="image fit thumb"><img src="images/project4/PR12.png" alt="Preferred Payment by Region"></a>
+  						<figcaption>Preferred Payment by Region</figcaption>
+						</figure>
+						<h3>Success vs Cancellation Rate</h3>
+						<pre><code>
+SELECT `Payment Method`,
+COUNT(*) AS status_rate,
+ROUND(SUM(CASE
+  WHEN `status` = 'Completed' THEN 1 ELSE 0 END) * 100 / COUNT(*), 2) AS Success_rate,
+ROUND(SUM(CASE
+  WHEN `status` = 'Cancelled' THEN 1 ELSE 0 END) * 100 / COUNT(*), 2) AS Cancellation_rate
+FROM amazon_sales_2025
+WHERE `status` IN('Completed', 'Cancelled')
+GROUP BY `Payment Method`;
+						</code></pre>
+						<ul>
+ 						 <li>Shows percentage of successful vs cancelled transactions by payment method.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+ 						 <li>Amazon Pay has the highest success rate at 75% and the lowest cancellation rate (25%), though it’s used less frequently (28 transactions).</li>
+						 <li>PayPal also performs reasonably well, with a success rate of 65.22% across 46 transactions, making it both popular and fairly reliable.</li>
+						 <li>Gift Card shows a very low success rate of 25% and the highest cancellation rate (75%), suggesting significant issues possibly with redemption, card balance errors, or fraud checks.</li>
+						 <li>Credit Card and Debit Card both have more failures than successes:</li>
+						 <ul>
+							<li>Credit Card: 51.52% success vs. 48.48% cancellation.</li>
+							<li>Debit Card: only 41.18% success and 58.82% cancellation, making it particularly problematic.</li>
+						 </ul>
+						</ul>
+						<h4>Key Insights:</h4>
+						<ul>
+							<li>Focus on promoting and optimizing Amazon Pay and PayPal, as they deliver the best reliability.</li>
+							<li>nvestigate why Gift Card, Debit Card, and Credit Card have high cancellation rates, this could be due to payment gateway issues, fraud detection settings, or customer errors.</li>
+							<li>Consider customer support messaging or checkout flow improvements to reduce friction for lower-performing methods.</li>
+						</ul>
+						<figure>
+  						<a href="images/project4/PR13.png" class="image fit thumb"><img src="images/project4/PR13.png" alt="Success vs Cancellation Rate"></a>
+  						<figcaption>Success vs Cancellation Rate</figcaption>
+						</figure>
+
+						<h3>Success vs Cancellation Rate Indicator</h3>
+						<pre><code>
+WITH PM_CTE AS
+(SELECT `Payment Method`,
+`status`,
+COUNT(`status`),
+RANK() OVER(PARTITION BY `Payment Method` ORDER BY COUNT(`status`) DESC) AS status_rank
+FROM amazon_sales_2025
+WHERE `status` IN('Completed', 'Cancelled')
+GROUP BY `Payment Method`, `status`)
+SELECT `Payment Method`,
+CASE
+  WHEN `status` = 'Completed' AND status_rank = 1 THEN 'High'
+  ELSE 'Low'
+END AS Success_rate,
+CASE
+  WHEN `status` = 'Cancelled' AND status_rank = 1 THEN 'High'
+  ELSE 'Low'
+END AS Cancellation_rate
+FROM PM_CTE
+WHERE status_rank = 1;
+						</code></pre>
+						<ul>
+  						<li>Flags if a payment method has a high or low success/cancellation rate.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+ 						 <li>Amazon Pay, PayPal, and Credit Card all have high success rates and low cancellation rates, making them the most reliable options for ensuring successful transactions and smooth customer experience.</li>
+						 <li>Debit Card and Gift Card show low success rates and high cancellation rates, highlighting them as riskier choices that could lead to more failed checkouts and dissatisfied customers.</li>
+						</ul>
+						<h4>Key Insights:</h4>
+						<ul>
+							<li>The business should prioritize and promote Amazon Pay, PayPal, and Credit Card at checkout to maximize transaction success.</li>
+							<li>Investigate and address issues affecting Debit Card and Gift Card payments whether technical (gateway errors) or operational (balance or fraud checks) to reduce cancellations and improve overall checkout performance.</li>
+						</ul>
+						<figure>
+  						<a href="images/project4/PR14.png" class="image fit thumb"><img src="images/project4/PR14.png" alt="Success vs Cancellation Rate Indicator"></a>
+  						<figcaption>Success vs Cancellation Rate Indicator</figcaption>
+						</figure>
+						<h3>Payment vs Status Overview</h3>
+<pre><code>
+SELECT `Payment Method`,
+`status`,
+COUNT(*) AS Order_status
+FROM amazon_sales_2025
+GROUP BY `Payment Method`, `status`
+ORDER BY `Payment Method`, COUNT(*) DESC;
+</code></pre>
+<ul>
+  <li>Summarizes the distribution of each order status per payment method.</li>
+</ul>
+<h4>Insights:</h4>
+<ul>
+  <li>PayPal leads with the highest number of completed orders (30) out of its total records — showing strong reliability and customer preference.</li>
+	<li>Amazon Pay also shows solid performance with 21 completed orders and fewer cancellations (7) compared to other methods.</li>
+	<li>Credit Card shows 17 completed orders but also 16 cancellations and 21 pending, indicating potential issues with authorization or customer drop-offs.</li>
+	<li>Debit Card has 14 completed orders vs. 20 cancellations and 19 pending meaning more than half of its transactions are either failed or still pending, suggesting significant friction.</li>
+	<li>Gift Card is the weakest: only 6 completed orders out of 42 total status entries, with a very high number of cancellations (18) and pending (18) signaling operational or customer usage problems (e.g., invalid codes, expired cards, balance issues).</li>
+</ul>
+
+<h4>Key Insights:</h4>
+<ul>
+	<li>PayPal and Amazon Pay remain the most reliable, with higher completion rates and lower cancellations.</li>
+	<li>Credit Card and Debit Card have high pending/cancelled volumes and need investigation into payment gateway flow or fraud filters.</li>
+	<li>Gift Cards need special review possibly clearer instructions, balance checks, or redemption improvements to reduce failed and pending orders.</li>
+</ul>
+<figure>
+  <a href="images/project4/PR15.png" class="image fit thumb"><img src="images/project4/PR15.png" alt="Payment vs Status Overview"></a>
+  <figcaption>Payment vs Status Overview</figcaption>
+</figure>
+<h3>Monthly Sales Trend</h3>
+<pre><code>
+SELECT 
+DATE_FORMAT(`date`, '%Y-%m') AS `Month`,
+COUNT(`Total Sales`) AS Sales
+FROM amazon_sales_2025
+GROUP BY DATE_FORMAT(`date`, '%Y-%m');
+</code></pre>
+<ul>
+  <li>Tracks sales volume by month for dashboard time series charts.</li>
+</ul>
+<h4>Insights:</h4>
+<ul>
+  <li>March 2025 had the highest sales with 131 orders, showing a strong peak possibly driven by promotions, seasonality, or successful marketing campaigns.</li>
+	<li>February 2025 also performed well with 113 orders, indicating consistent demand leading up to March.</li>
+	<li>April 2025 dropped sharply to only 6 orders, signaling a major decline that may point to seasonality ending, stock issues, reduced marketing efforts, or other operational challenges.</li>
+</ul>
+<h4>Key Insights:</h4>
+<ul>
+	<li>The strong sales in February and March suggest this period is crucial for revenue (potentially a seasonal sales window).</li>
+	<li>The drastic fall in April highlights an opportunity to investigate and address causes (e.g., marketing gaps, inventory, or customer churn) to sustain momentum beyond peak months.</li>
+</ul>
+<figure>
+  <a href="images/project4/PR16.png" class="image fit thumb"><img src="images/project4/PR16.png" alt="Monthly Sales Trend"></a>
+  <figcaption>Monthly Sales Trend</figcaption>
+</figure>
+<h3>Sales Peaks and Dips</h3>
+<pre><code>
+CREATE TEMPORARY TABLE Sales_Trend AS
+SELECT `date`,
+COUNT(`Total Sales`) AS Sales
+FROM amazon_sales_2025
+GROUP BY `date`;
+
+-- Peaks
+SELECT * FROM Sales_Trend
+ORDER BY Sales DESC
+LIMIT 5;
+
+-- Dips
+SELECT * FROM Sales_Trend
+ORDER BY Sales ASC
+LIMIT 5;
+</code></pre>
+<ul>
+  <li>Identifies days with highest and lowest sales after storing daily totals in a temp table.</li>
+</ul>
+<h4>Insights:</h4>
+<ul>
+  <li>The peaks are clustered mostly in February and March 2025, matching the previously observed seasonal strength.</li>
+	<li>February 2025 had three of the top five peak days (Feb 10, Feb 20, Feb 23), showing it was an especially strong month with frequent sales spikes.</li>
+	<li>March 2025 had two peak days (Mar 14, Mar 24), keeping momentum into the next month.</li>
+	<li>Four of the five lowest sales days occurred in March and February, the same months that also saw peaks — indicating volatility rather than steady demand.</li>
+	<li>Dips on consecutive days (Mar 27 & Mar 28) suggest a brief period of very low customer activity, possibly due to external factors (holidays, technical issues, or supply delays).</li>
+	<li>Despite overall strong months, these isolated dips reveal gaps that might be related to operational downtime, campaign pauses, or customer fatigue after earlier peaks.</li>
+</ul>
+<h4>Key Insights:</h4>
+<ul>
+	<li>These peaks likely align with marketing campaigns, product launches, or seasonal demand and identifying what drove them can help replicate similar results in future months (especially outside the seasonal window).</li>
+	<li>Understanding what happened on these specific low-sales days can help avoid future dips by improving marketing consistency, inventory management, or addressing timing issues around weekends or holidays.</li>
+</ul>
+<div class="row">
+<figure>
+  <a href="images/project4/PR17.png" class="image fit thumb"><img src="images/project4/PR17.png" alt="Sales Peaks"></a>
+  <figcaption>Sales Peaks</figcaption>
+</figure>
+
+<figure>
+  <a href="images/project4/PR18.png" class="image fit thumb"><img src="images/project4/PR18.png" alt="Sales Dips"></a>
+  <figcaption>Sales Dips</figcaption>
+</figure>
+</div>
+
+<h3>Weekday vs Weekend Sales</h3>
+<pre><code>
+SELECT 
+CASE 
+  WHEN DAYOFWEEK(`date`) IN (1, 7) THEN 'Weekends'
+  ELSE 'Weekdays'
+END AS day_type,
+COUNT(`Order id`) AS Order_count,
+SUM(`Total Sales`) AS Total_sales
+FROM amazon_sales_2025
+GROUP BY CASE 
+  WHEN DAYOFWEEK(`date`) IN (1, 7) THEN 'Weekends'
+  ELSE 'Weekdays'
+END;
+</code></pre>
+<ul>
+  <li>Splits total sales and order counts by weekdays vs weekends.</li>
+</ul>
+<h4>Insights:</h4>
+<ul>
+  <li>Weekdays account for the bulk of activity, with 182 orders generating ₦186,085 in total sales.</li>
+	<li>Weekends have far fewer orders (68 orders) and significantly lower total sales (₦57,760).</li>
+</ul>
+<h4>Observations:</h4>
+<ul>
+<li>Average sales per order are similar, but total weekday volume is much higher likely due to regular shopping patterns, promotions, or business purchases.</li>
+<li>Weekends see a sharp drop in both order volume and revenue, suggesting lower customer engagement or limited promotions.</li>
+</ul>
+<h4>Key Insights:</h4>
+<ul>
+	<li>The business performs strongly on weekdays; weekends underperform in both order count and revenue.</li>
+	<li>To balance demand, the business could introduce weekend-specific offers, flash sales, or targeted ads to boost weekend sales.</li>
+</ul>
+<figure>
+  <a href="images/project4/PR19.png" class="image fit thumb"><img src="images/project4/PR19.png" alt="Weekday vs Weekend Sales"></a>
+  <figcaption>Weekday vs Weekend Sales</figcaption>
+</figure>
+
+
+
+
+						<h2>Recommendations</h2>
+						<ul>
+										<li>The majority of cancelled orders were placed using Debit Cards, suggesting issues with that method. Credit Card transactions had the highest completion rate, making it the most reliable.</li>
+										<li>Electronics and Home Appliances together account for most of the total revenue, suggesting a heavy customer preference and high-margin potential in these categories.</li>
+										<li>Average order value peaked in March 2025, indicating high-value transactions. Order count, however, was highest in February.</li>
+										<li>Weekdays saw higher customer activity, ideal for promotions and ads.</li>
+										<li>Out of 92 unique customers, most were repeat buyers, indicating good customer retention.</li>
+									</ul>
+
+							<h5>For further analysis and Interaction with the queries check the SQL file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/Amazon_Sales_Analysis.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>Bewery Retailer Sales Analysis and Visualization - Excel Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/01.jpeg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">This project analyzes beer sales data across various Nigerian zones, states and cities. it explores the performance of different beer brands, retailers and regions to uncover sales patterns and profitability insights using Excel.
+						</p>
+						</div>
+
+							<h2>Objectives</h2>
+							<div class="row">
+									<h4>To build a data-driven Excel dashboard that enables stakeholders to:</h4>
+									<ul>
+										<li>Monitor sales and profits across different regions and brands</li>
+										<li>Identify high-performing locations and products</li>
+										<li>Find the variance in sales across the years</li>
+										<li>Recommend strategic buisness on decisions bases on sales insights</li>
+									</ul>
+							</div>
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>Data Cleaning and Transformation</li>
+										<li>Pivot Tables & Pivot Charts</li>
+										<li>Conditonal Formatting</li>
+										<li>Custom Calculations</li>
+										<li>Interactive Dashboard Design</li>
+										<li>KPI Creation</li>
+										<li>Trend Analysis</li>
+										<li>BUsiness Insight Communication</li>
+									</ul>
+							</div>
+
+							<h2>Dataset</h2>
+							<div class="row">
+							
+   						</style>
+							<p>Source: Internal sales records(simulated)</p>
+							<p>Size: Covers daily sales across 6 geopolitical zones and multiple retailers</p>
+							<p>Key Columns: <b> Retailer</b>, <b>Retailer ID</b>, <b>Invoice Date</b>, <b>Zone</b>, <b>State</b>, <b>City</b>, <b>Beer Brand</b>, <b>Cost Per Unit</b>, <b>Price Per Unit</b>, <b>Units Sold</b>.</p>
+							<figure>
+  						<a href="images/project1/raw01.jpg" class="image fit thumb"><img src="images/project1/raw01.jpg" alt="Raw Dataset"></a>
+ 							 <figcaption>Raw Dataset</figcaption>
+							</figure>
+							</div>
+							
+							<h2>ETL Process (Extract, Transform and Load)</h2>
+							<p align = "justify">This process involved obtaining the data, cleaning the data and transformed it for analysis. The cleaning involves the formatting of key columns such as dates and currency. Calculated metrics such as <b>Sales</b>, <b>Profit</b> and <b>Profit Margin</b> were derived using Excel formulas to drive decision decision-making.</p>
+						<figure>
+  					<a href="images/project1/Clean01.jpg" class="image fit thumb"><img src="images/project1/Clean01.jpg" alt="Cleaned Dataset"></a>
+  					<figcaption>Cleaned Dataset</figcaption>
+						</figure>
+
+						<h2>Modelling, Analysis and Visualization</h2>
+							<div class="row">
+									<h3>KPI</h3>
+									<ul>
+										<li>Total Sales: ₦3,429,348,650 – This is the total revenue generated across all retailers and beer brands during the selected time range (2022 and 2023).</li>
+										<li>Total Unit Sold: 2,019,201 – The total number of beer units sold over the two years.</li>
+										<li>Total Profit: ₦371,990,050 – Represents the total number of invoices or sales transactions recorded.</li>
+										<li>Total Number of Transactions:  4,824 – Overall profit earned from beer sales across retailers and brands.</li>
+										<li>Total Profit: 11%</li>
+									</ul>
+								<figure>
+  					<a href="images/project1/Kpi01.jpg" class="image fit thumb"><img src="images/project1/Kpi01.jpg" alt="KPIs"></a>
+  					<figcaption>KPIs</figcaption>
+						</figure>
+						</div>
+						<h3>Sales Analysis</h3>
+						<h4>Top Beers by Average Sales</h4>
+						<p><b>Trophy</b> generated the highest average sales with ₦968,000, followed by <b>Budweiser</b> with ₦875,415. <b>Desperado</b> has the lowest average sales with ₦571,874.</p>
+						<p><b>Insight</b>: Trophy and Budweiser are consistently top-selling beers.</p>
+						<figure>
+						<a href="images/project1/PR1.png" class="image fit thumb"><img src="images/project1/PR1.png" alt="Beer by Average Sales"></a>
+						<figcaption>Beer by Average Sales</figcaption>
+						</figure>
+						<h4>Sales by Retailer</h4>
+						<p><b>Shoprite</b> and <b>Sunshine</b> generated the highest sales with ₦1,062,019,950 and ₦719,989,000 respectively. <b>Foodco</b> has the least sales with ₦383,284,750.</p>
+						<p><b>Insight</b>: Shoprite is a dominant distribution channel for beer.</p>
+						<figure>
+						<a href="images/project1/PR2.png" class="image fit thumb"><img src="images/project1/PR2.png" alt="Sales by Retailer"></a>
+						<figcaption>Sales by Retailer</figcaption>
+						</figure>
+						<h4>Quarterly Sales Trend</h4>
+						<p>2022 shows steady but modest growth. 2023 has much higher sales per quarter, peaking in Q3  ₦768,088,400.</p>
+						<p><b>Insight</b>: Sales significantly picked up in 2023, possibly due to better marketing or seasonal boosts.</p>
+						<figure>
+						<a href="images/project1/PR3.png" class="image fit thumb"><img src="images/project1/PR3.png" alt="Quarterly Sales Trend"></a>
+						<figcaption>Quarterly Sales Trend</figcaption>
+						</figure>
+						<h4>Sales Distribution Across Nigeria</h4>
+						<p>North East</b> and <b>North West</b> generated the highest sales with ₦828,862,650 and ₦763,756,800 respectively. <b>South South</b> has the least sales with ₦307,763,400.</p>
+						<p><b>Insight</b>: Northern regions drive higher beer sales than the southern zones.</p>
+						<figure>
+						<a href="images/project1/PR4.png" class="image fit thumb"><img src="images/project1/PR4.png" alt="Sales Distribution Across Nigeria"></a>
+						<figcaption>Sales Distribution Across Nigeria</figcaption>
+						</figure>
+
+						<h3>Profit Analysis</h3>
+						<h4>Top Beers by Average Profit</h4>
+						<p><b>Trophy</b> generated the highest average profit with ₦107,556, followed by <b>Goldberg</b> with ₦89,284. <b>Budweiser</b> has the lowest average sales with ₦41,686.</p>
+						<p><b>Insight</b>: Despite strong sales, some brands (like Budweiser) may have lower margins.</p>
+						<figure>
+						<a href="images/project1/PR5.png" class="image fit thumb"><img src="images/project1/PR5.png" alt="Beer by Average Profit"></a>
+						<figcaption>Beer by Average Profit</figcaption>
+						</figure>
+						<h4>Profit by Retailer</h4>
+						<p><b>Shoprite</b> and <b>Sunshine</b> generated the highest profit with ₦115,502,950 and ₦77,662,900 respectively. <b>Foodco</b> has the least profit with ₦41,103,350.</p>
+						<p><b>Insight</b>: Shoprite generates not only high sales but also high profitability.</p>
+						<figure>
+						<a href="images/project1/PR6.png" class="image fit thumb"><img src="images/project1/PR6.png" alt="Profit by Retailer"></a>
+						<figcaption>Profit by Retailer</figcaption>
+						</figure>
+
+						<h3>Variance Analysis</h3>
+						<h4>Units of Beer Sold by Brand</h4>
+						<p align = "justify"><b>Trophy</b> recorded the highest sales increase (+252,899 units). <b>Desperado</b> had the smallest increase (+199,846 units), though still significant. There was a dramatic increase in beer sales across all listed brands in 2023 compared to 2022, suggesting significant growth in demand, marketing success, or distribution expansion.</p>
+						<figure>
+						<a href="images/project1/PR7.png" class="image fit thumb"><img src="images/project1/PR7.png" alt="Units of Beer Sold by Brand"></a>
+						<figcaption>Units of Beer Sold by Brand</figcaption>
+						</figure>
+						<h4>Sales by Retailer(Variance)</h4>
+						<p align = "justify">All retailers saw massive sales growth in 2023 compared to 2022.
+
+Shoprite had the highest increase in sales (₦ 700,750,050 million).
+
+Sunshine also saw impressive growth, with ₦ 648,384,900 million increase despite starting from a low base in 2022.
+
+Overall, sales across all listed retailers increased by over 446%, indicating strong business performance, possibly due to improved distribution, demand, or market expansion.</p>
+						<figure>
+						<a href="images/project1/PR8.png" class="image fit thumb"><img src="images/project1/PR8.png" alt="Sales by Retailer(Variance)"></a>
+						<figcaption>Sales by Retailer(Variance)</figcaption>
+						</figure>
+
+						<h2>Dashboard</h2>
+						<figure>
+						<a href="images/project1/dsh01.png" class="image fit thumb"><img src="images/project1/dsh01.png" alt="Dashboard"></a>
+						<figcaption>Dashboard</figcaption>
+						</figure>
+
+						<h2>Recommendations</h2>
+						<h3>Strenghthen Partnership with Top Retailers</h3>
+						<ul>
+										<li>Prioritize Shoprite, Sunshine, and Genesis for special promotions, larger stock allocations, and co-branded campaigns.</li>
+										<li>Negotiate better shelf positioning and exclusive launch deals with Shoprite, the top-performing retailer.</li>
+									</ul>
+						<h3>Scale Operations in High-Performing Regions</h3>
+						<ul>
+										<li>Focus marketing and logistics resources on:</li>
+										<ul>
+											<li>North East</li>
+											<li>North West</li>
+											<li>North Central</li>
+										</ul>
+										<li>Expand distribution centers or delivery coverage in these zones to meet growing demand and reduce stockouts.</li>
+									</ul>
+									<h3>Maximize Trophy’s Market Strength</h3>
+									<ul>
+									<li>Increase production, distribution, and advertising budget for Trophy, the top beer in:</li>
+										<ul>
+											<li>Unit Sales</li>
+											<li>Average sales</li>
+											<li>Average profit</li>
+										</ul>
+										<li>Explore premium packaging, bundle deals, or limited-edition variants to boost Trophy’s brand equity and sales even further.</li>
+									</ul>
+									<h3>Improve Profit Margins for Lower-Performing Brands</h3>
+									<ul>
+										<li>Review Budweiser and Orijin pricing, supply chain, and promotional strategy to improve average profit.</li>
+										<li>Consider volume-based pricing or shifting focus toward more profitable outlets for these products.</li>
+									</ul>
+									<h3>Leverage Q3 Momentum</h3>
+									<ul>
+										<li>Q3 is consistently the strongest quarter. Launch seasonal promotions, festive marketing, or discounted combo packs around this period to drive even higher conversions.</li>
+									</ul>
+									<h3>Boost Underperforming Retailers</h3>
+									<ul>
+										<li>Investigate why FoodCo and Synergy lag in sales and profit.</li>
+									</ul>
+
+									<h2>Conclusion</h2>
+									<p align ="justify">The Brewery Retailer Dashboard provides clear evidence of significant growth in sales, units sold, and profitability between 2022 and 2023. With over ₦3.4 billion in total sales, 2 million+ units sold, and strong performance from both top retailers like Shoprite and leading beer brands like Trophy, the business is on a strong upward trajectory.</p>
+									<p align ="justify">Regional insights reveal that the northern zones dominate sales, while quarterly trends highlight Q3 as the most lucrative period. Although performance has improved across the board, profit margin optimization and targeted support for lower-performing retailers and brands remain opportunities for strategic improvement.</p>
+
+
+									<h5>For further analysis and Interaction with the dashboard check the excel file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/Beer_Sales_Analysis.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

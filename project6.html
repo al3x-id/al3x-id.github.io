@@ -1,0 +1,639 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>Luxury Car Dealership Analysis - Python Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/06.jpg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">This project provides insights to help stock the right inventory, optimize pricing, and improve customer satisfaction by transforming analyzing and present a clean, visual and compelling report.</p>
+						</div>
+
+							<h2>Objectives</h2>
+              <ol>
+                <li>Who is the most popular car manufacturer?</li>
+                <li>Which manufacturer country is most represented?</li>
+                <li>What is the least popular car color?</li>
+                <li>What's the average price by ownership category?</li>
+                <li>Between automatic and manual cars, which type was sold more?</li>
+                <li>Sales trend across the year</li>
+                <li>What business insight can you derive from your analysis?</li>
+                <li>What strategic advice would you give the dealership?</li>
+              </ol>
+							
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>Pandas Data Aggregation</li>
+										<li>Matplotlib Visualization</li>
+                    <li>Data Deduplication</li>
+										<li>Stock Analysis</li>
+										<li>Decision Making</li>
+										<li>Executive Insight</li>
+									</ul>
+							</div>
+							
+							<h2>Cleaning Process</h2>
+							<p align = "justify">To ensure accurate analysis and proper formatting, a structured data cleaning process was carried out on the dataset. Below is a breakdown of each transformation step, including the purpose and outcome.</p>
+						<h3>1. Import Pandas for Data Cleaning and Analysis and Matplotlib for Visualization </h3>
+							<pre><code>
+import pandas as pd
+import matplotlib.pyplot as plt
+							</code></pre>
+					
+							<h3>2. Read Datasets from Excel</h3>
+							<pre><code>
+data = pd.read_excel(r"C:\Users\cw_86\Downloads\Week 3 Data Challenge.xlsx", sheet_name = 'Data')
+
+company = pd.read_excel(r"C:\Users\cw_86\Downloads\Week 3 Data Challenge.xlsx", sheet_name = 'Manufacturing Company')
+							</code></pre>
+							<h4>Data1 (data): Trimmed Columns to Remove Extra Space Using <i>"for loop"</i> & <i>".strp"</i></h4>
+              <pre><code>
+for col in data.select_dtypes(include=['object']).columns:
+    # Apply strip to the column and update it in place
+    data[col] = data[col].str.strip()
+
+data
+              </code></pre>
+              <table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Car</th>
+<th>Year</th>
+<th>KM Driven</th>
+<th>Color</th>
+<th>Transimission</th>
+<th>Owner</th>
+<th>Price (USD)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jaguar XF</td>
+<td>2008</td>
+<td>104764</td>
+<td>White</td>
+<td>Automatic</td>
+<td>1st owner</td>
+<td>20422</td>
+</tr>
+<tr>
+<td>Audi A3</td>
+<td>2015</td>
+<td>282088</td>
+<td>Red</td>
+<td>Manual</td>
+<td>3rd owner</td>
+<td>97167</td>
+</tr>
+<tr>
+<td>BMW X5</td>
+<td>2005</td>
+<td>169466</td>
+<td>Red</td>
+<td>Manual</td>
+<td>1st owner</td>
+<td>129736</td>
+</tr>
+<tr>
+<td>BMW 428i</td>
+<td>2014</td>
+<td>304634</td>
+<td>Black</td>
+<td>Manual</td>
+<td>1st owner</td>
+<td>102585</td>
+</tr>
+<tr>
+<td>Lexus RX350</td>
+<td>2008</td>
+<td>181607</td>
+<td>Black</td>
+<td>Manual</td>
+<td>4th owner</td>
+<td>131459</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>Tesla Model 3</td>
+<td>2022</td>
+<td>222434</td>
+<td>Blue</td>
+<td>Automatic</td>
+<td>3rd owner</td>
+<td>63200</td>
+</tr>
+<tr>
+<td>Audi A3</td>
+<td>2020</td>
+<td>205600</td>
+<td>Blue</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>122412</td>
+</tr>
+<tr>
+<td>BMW X3</td>
+<td>2018</td>
+<td>190021</td>
+<td>Red</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>42267</td>
+</tr>
+<tr>
+<td>Volvo XC90</td>
+<td>2008</td>
+<td>138879</td>
+<td>Black</td>
+<td>Automatic</td>
+<td>4th owner</td>
+<td>116953</td>
+</tr>
+<tr>
+<td>Jaguar XF</td>
+<td>2009</td>
+<td>175443</td>
+<td>Yellow</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>22497</td>
+</tr>
+</tbody>
+</table>
+
+          <h4>Checked for Duplicate Value</h4>
+          <pre><code>
+data.duplicated().sum()         
+          </code></pre>
+
+          <h5>Output: 0</h5>
+
+          <h4>Data2 (company)</h4>
+          <pre><code>
+company         
+          </code></pre>
+<table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Company</th>
+<th>Country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BMW</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>Audi</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>Tesla</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Jaguar</td>
+<td>UK</td>
+</tr>
+<tr>
+<td>Mercedes</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>Volvo</td>
+<td>Sweden</td>
+</tr>
+<tr>
+<td>Cadillac</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Lexus</td>
+<td>Japan</td>
+</tr>
+</tbody>
+</table>
+   <style>
+     p {
+       margin-bottom: 0.5em; /* Adjust as needed */
+    /*   line-height: 1.2;    /* Adjust as needed */
+     }
+		 figure {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  figcaption {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+   						</style>
+
+              <h2> Analysis & Visualization</h2>
+              <h3>Splitted the Car Column to Extract Manufacturer (company)</h3>
+							<pre><code>
+data['Company'] = data['Car'].str.split(' ', n = 1, expand = True)[0]
+
+data
+							</code></pre>
+							<table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Car</th>
+<th>Year</th>
+<th>KM Driven</th>
+<th>Color</th>
+<th>Transimission</th>
+<th>Owner</th>
+<th>Price (USD)</th>
+<th>Company</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jaguar XF</td>
+<td>2008</td>
+<td>104764</td>
+<td>White</td>
+<td>Automatic</td>
+<td>1st owner</td>
+<td>20422</td>
+<td>Jaguar</td>
+</tr>
+<tr>
+<td>Audi A3</td>
+<td>2015</td>
+<td>282088</td>
+<td>Red</td>
+<td>Manual</td>
+<td>3rd owner</td>
+<td>97167</td>
+<td>Audi</td>
+</tr>
+<tr>
+<td>BMW X5</td>
+<td>2005</td>
+<td>169466</td>
+<td>Red</td>
+<td>Manual</td>
+<td>1st owner</td>
+<td>129736</td>
+<td>BMW</td>
+</tr>
+<tr>
+<td>BMW 428i</td>
+<td>2014</td>
+<td>304634</td>
+<td>Black</td>
+<td>Manual</td>
+<td>1st owner</td>
+<td>102585</td>
+<td>BMW</td>
+</tr>
+<tr>
+<td>Lexus RX350</td>
+<td>2008</td>
+<td>181607</td>
+<td>Black</td>
+<td>Manual</td>
+<td>4th owner</td>
+<td>131459</td>
+<td>Lexus</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>Tesla Model 3</td>
+<td>2022</td>
+<td>222434</td>
+<td>Blue</td>
+<td>Automatic</td>
+<td>3rd owner</td>
+<td>63200</td>
+<td>Tesla</td>
+</tr>
+<tr>
+<td>Audi A3</td>
+<td>2020</td>
+<td>205600</td>
+<td>Blue</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>122412</td>
+<td>Audi</td>
+</tr>
+<tr>
+<td>BMW X3</td>
+<td>2018</td>
+<td>190021</td>
+<td>Red</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>42267</td>
+<td>BMW</td>
+</tr>
+<tr>
+<td>Volvo XC90</td>
+<td>2008</td>
+<td>138879</td>
+<td>Black</td>
+<td>Automatic</td>
+<td>4th owner</td>
+<td>116953</td>
+<td>Volvo</td>
+</tr>
+<tr>
+<td>Jaguar XF</td>
+<td>2009</td>
+<td>175443</td>
+<td>Yellow</td>
+<td>Manual</td>
+<td>2nd owner</td>
+<td>22497</td>
+<td>Jaguar</td>
+</tr>
+</tbody>
+</table>
+
+							<h3>1. Who is the most popular car manufacturer?</h3>
+							<pre><code>
+#Created a bar chat 
+bars = data.groupby(by='Company')['Car'].count().plot(kind = 'bar', 
+                                                       title = 'Volume of Cars Sold', figsize = (10,6))
+# Add labels to each bar and capture the return value but don't display it
+bars.bar_label(bars.containers[0], padding = 3)
+
+# Improve readability
+plt.xticks(rotation=0, ha='center')
+plt.tight_layout()
+							</code></pre>
+							<ul>
+								<li>Created a bar chart showing the number of cars sold by each manufacturer(company)</li>
+							</ul>
+
+						<h4>Insights:</h4>
+						<ul>
+							<li>BMW is the most popular manufacturer(company) with 3231 cars sold</li>
+						</ul>
+						<figure>
+						<a href="images/project6/PR1.png" class="image fit thumb"><img src="images/project6/PR1.png" alt="Volumes of Cars Sold"></a>
+						<figcaption>Volumes of Cars Sold</figcaption>
+						</figure>
+
+						<h3>2. Which Manufacturing company is most represented?</h3>
+						<pre><code>
+combined_table = pd.merge(data, company, on = 'Company')
+
+bars2 = combined_table.groupby(
+    by = 'Country')['Car'].count().plot(
+    kind = 'bar', title = 'Volume of Cars Sold by Manufacturing Country', figsize = (10,6))
+
+bars2.bar_label(bars2.containers[0], padding = 3)
+
+plt.xticks(rotation = 0, ha = 'center')
+plt.tight_layout()
+						</code></pre>
+						<ul>
+							<li>Merged data and company table.</li>
+              <li>Created a bar chart showing the number of cars sold by each manufacturing company</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Germany is the most represented manufacturing company with 5754 cars sold</li>
+						</ul>
+						<figure>
+						<a href="images/project6/PR2.png" class="image fit thumb"><img src="images/project6/PR2.png" alt="Volume of Cars Sold by Manufacturing Country"></a>
+						<figcaption>Volume of Cars Sold by Manufacturing Country</figcaption>
+						</figure>
+
+						<h3>3. What is the least popular car color?</h3>
+						<pre><code>
+bars3 = data.groupby(by = 'Color')['Color'].count().plot(
+    kind = 'bar', title = 'Volume of Cars Sold by Color', figsize = (10,6))
+
+bars3.bar_label(bars3.containers[0], padding = 3)
+
+plt.xticks(rotation = 0, ha = 'center')
+plt.tight_layout()
+						</code></pre>
+						<ul>
+							<li>Created a bar chart showing the number of cars colors sold.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Red was the least color sold at 1406</li>
+						</ul>
+						<figure>
+						<a href="images/project6/PR3.png" class="image fit thumb"><img src="images/project6/PR3.png" alt="Volume of Cars Sold by Color"></a>
+						<figcaption>Volume of Cars Sold by Color</figcaption>
+						</figure>
+						<h3>4. What is the average price by ownership category?</h3>
+						<pre><code>
+bars4 = data.groupby(by = 'Owner')['Price (USD)'].mean().plot(
+    kind = 'bar', title = 'Average Price (USD) by Ownership Category', figsize= (10,6))
+
+bars4.bar_label(bars4.containers[0], padding = 3)
+
+plt.xticks(rotation = 0, ha = 'center')
+plt.tight_layout()
+						</code></pre>
+						<ul>
+							<li>Created a bar chart showing the average price of car sold by ownership category.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>3rd owner has the highest average price of 80774.6.</li>
+              <li>2nd owner has the least average price of 79698.2.</li>
+						</ul>
+						<figure>
+						<a href="images/project6/PR4.png" class="image fit thumb"><img src="images/project6/PR4.png" alt="Average Price (USD) by Ownership Category"></a>
+						<figcaption>Average Price (USD) by Ownership Category</figcaption>
+						</figure>
+
+						<h3>5. Between Automatic and Manual cars which one was sold more?</h3>
+						<pre><code>
+acVmc = data.groupby(by = 'Transimission')['Transimission'].count()
+
+plt.pie(acVmc, labels= ['Automatic', 'Manual'], colors=['green', 'yellow'], explode=(0, 0.1),
+        shadow=True, autopct='%1.2f%%')
+
+plt.title('Automatic Cars VS Manual Cars')
+plt.tight_layout()
+						</code></pre>
+						<ul>
+							<li>Created a pie chart showing the percentage of automatic and manual cars sold.</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Manual cars has higher sales of 51.9%</li>
+						</ul>
+						<figure>
+						<a href="images/project6/PR5.png" class="image fit thumb"><img src="images/project6/PR5.png" alt="Automatic Cars VS Manual Cars"></a>
+						<figcaption>Automatic Cars VS Manual Cars</figcaption>
+						</figure>
+						<h3>6. Sales Trend across the year</h3>
+						<pre><code>
+data.groupby(by = 'Year')['Price (USD)'].sum().plot(
+    figsize = (10,6), xlim = (2005, 2023), title = 'Sales Trend Across the Year (2005 - 2023)')
+
+plt.tight_layout()
+						</code></pre>
+						<ul>
+							<li>Line graph was used to showing the trend of sales across the year from 2005 - 2003</li>
+						</ul>
+						<h4>Insights:</h4>
+						<ul>
+							<li>Peak sales was seen in 2008 this might be due to;</li>
+              <ul>
+                <li>New model launches and competitive marketing</li>
+                <li>Strong performance of specific model such as BMW M3</li>
+                <li>Rapid growing developing economies</li>
+                <li>Consumer wuilligness to learn</li>
+              </ul>
+						</ul>
+						<figure>
+						<a href="images/project6/PR6.png" class="image fit thumb"><img src="images/project6/PR6.png" alt="Most Profitable Categories"></a>
+						<figcaption>Most Profitable Categories</figcaption>
+						</figure>
+
+						<h2>Business Insights</h2>
+						<ol>
+							<li>BMW is the dealership’s top-selling brand, with over 3,200 cars sold, confirming strong brand loyalty and demand.</li>
+							<li>German-made cars dominate sales, totaling more than 5,700 units, highlighting the dealership’s strength in premium European brands.</li>
+							<li>Red cars are the least popular color choice, with only around 1,400 units sold, indicating limited customer interest in bold color options.</li>
+							<li>Third-owner cars achieve the highest average resale price (~$80,775), suggesting that well-maintained older premium models remain attractive to buyers.</li>
+						</ol>
+						
+
+
+
+
+						<h2>Strategic Advice</h2>
+						<ol>
+							<li>Invest in expanding BMW and other German luxury inventory to capture existing demand and maximize revenue potential.</li>
+							<li>Adjust pricing strategies or promotional campaigns to move red cars faster, such as discounts, trade-in bonuses, or limited-time offers.</li>
+							<li>Promote the value of 3rd-owner premium cars as an affordable entry into luxury ownership, supported by quality assurance messaging.</li>
+							<li>Prioritize stocking popular colors (black, white, grey, silver) to better match customer preferences and reduce holding time.</li>
+							<li>Strengthen supplier partnerships with German manufacturers to secure exclusive models or better purchase terms, enhancing competitiveness.
+							</li>
+						</ol>
+
+							<h5>For further analysis and Interaction with the queries check the SQL file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/Luxury-Car-Dealership-Analysis.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

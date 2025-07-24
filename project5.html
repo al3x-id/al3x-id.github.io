@@ -1,0 +1,720 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>SuperStore Sales Data Cleaning - Python Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/05.jpg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">There are two batches of superstore sales data from different teams. The files are similar but messy and inconstitent. The files include two sheets Batch1(first 3500 rows) Batch 2(second 3500 rows) which must be appended together before or after cleaning.</p>
+						</div>
+
+							<h2>Objectives</h2>
+									<h4>1. Append the Data</h4>
+									<ul>
+										<li>Combine the rows in Batch 1 and Batch 2 into a single sheet called Combined Data.</li>
+									</ul>
+
+									<h4>2. Split "Customer Info"</h4>
+									<ul>
+										<li>From the Customer Info column, create: Customer Name & Customer ID</li>
+									</ul>
+								
+							<h4>3. Clean "order Date</h4>
+									<ul>
+										<li>Convert all values into a proper date format.</li>
+										<li>Replace "invalid date" with a blank or a fixed default date (e.g., 01/01/2021) and mark the row for review.</li>
+							</ul>
+
+							<h4>4. Standardize "Ship Mode"</h4>
+									<ul>
+										<li>Correct inconsistent values such as standard class, Same day, blank, etc.</li>
+										<li>Use Standard Class, Second Class, Same Day, First Class only.</li>
+							</ul>
+
+							<h4>5. Clean the "State" Column</h4>
+									<ul>
+										<li>Fix variations:</li>
+										<li>calif. → California</li>
+										<li>NY → New York</li>
+                    <li>Empty or NaN </li>
+							</ul>
+
+							<h4>6. Fix "Category" Column</h4>
+									<ul>
+										<li>Normalize values to: Technology, Furniture, Office Supplies</li>
+										<li>Replace incorrect ones like Furn, Office supply, or blanks.</li>
+							</ul>
+
+              <h4>7. CleAN "Sales" Column</h4>
+									<ul>
+										<li>Remove currency signs, commas, and text values: $300 → 300 & 125,00 → 125.00</li>
+										<li>Replace blanks and NaN with 0 and flag for checking.</li>
+                    <li>Add a standard format</li>
+							</ul>
+
+              <h4>8. Fix "Quantity" Column</h4>
+              <ul>
+                <li>Convert everything to numbers: "five" → 5 & Blank, NaN → replace with 0 or highlight for manual review.</li>
+              </ul>
+							<h4>Questions</h4>
+									<ul>
+										<li>What is the Total Sales Value?</li>
+										<li>How many customers used the Standard Class ship mode?</li>
+                    <li>How many unique customers are in the dataset?</li>
+							</ul>
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>Data Cleaning and Transformation</li>
+										<li>Text/String Manipulation</li>
+										<li>Date Formatting & Conversion</li>
+										<li>Data Type Conversion</li>
+										<li>Use of Pandas</li>
+										<li>Data Deduplication</li>
+										<li>Basic Analytics & Aggregation</li>
+										<li>Business Insight Communication</li>
+										<li>Data Validation</li>
+									</ul>
+							</div>
+							
+							<h2>Cleaning Process</h2>
+							<p align = "justify">Here's a step-by-step breakdown of the SQL script and what each part of the code does:</p>
+
+							<h3>1. import pandas libary for the data cleaning</h3>
+							<pre><code>
+import pandas as pd
+							</code></pre>
+
+              <h3>2. Import the two datasets from Excel</h3>
+							
+							<pre><code>
+df1 = pd.read_excel(r"C:\Users\cw_86\Downloads\Week 2 Data Challenge.xlsx", sheet_name = 'Batch 1')
+df2 = pd.read_excel(r"C:\Users\cw_86\Downloads\Week 2 Data Challenge.xlsx", sheet_name = 'Batch 2')
+							</code></pre>
+              <h4>Batch 1 Dataset</h4>
+              <pre><code>
+df1
+              </code></pre>
+
+              <table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Order ID</th>
+<th>Customer Info</th>
+<th>Order Date</th>
+<th>Ship Mode</th>
+<th>State</th>
+<th>Product Name</th>
+<th>Category</th>
+<th>Sales</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORD-1000</td>
+<td>Ahmed Musa | CUST-0032</td>
+<td>invalid date</td>
+<td>NaN</td>
+<td>California</td>
+<td>Office Chair</td>
+<td>NaN</td>
+<td>$300</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-1001</td>
+<td>Fatima Bello | CUST-0416</td>
+<td>2021-05-03 00:00:00</td>
+<td>Standard Class</td>
+<td>California</td>
+<td>Desk</td>
+<td>NaN</td>
+<td>49.99</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ORD-1002</td>
+<td>Emily Davis | CUST-0886</td>
+<td>2021-10-10 00:00:00</td>
+<td>First Class</td>
+<td>calif.</td>
+<td>Wireless Mouse</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-1003</td>
+<td>John Smith | CUST-0816</td>
+<td>2021-05-09 00:00:00</td>
+<td>Second Class</td>
+<td>NaN</td>
+<td>Desk</td>
+<td>Office supply</td>
+<td>89.00</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-1004</td>
+<td>Ahmed Musa | CUST-1446</td>
+<td>2021-05-09 00:00:00</td>
+<td>Second Class</td>
+<td>Illinois</td>
+<td>Monitor</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>five</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>ORD-4494</td>
+<td>Xiao Mei | CUST-1084</td>
+<td>2021-03-21 00:00:00</td>
+<td>Second Class</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>Technology</td>
+<td>89.00</td>
+<td>five</td>
+</tr>
+<tr>
+<td>ORD-4495</td>
+<td>Ahmed Musa | CUST-1009</td>
+<td>2021-08-03 00:00:00</td>
+<td>NaN</td>
+<td>calif.</td>
+<td>Office Chair</td>
+<td>NaN</td>
+<td>49.99</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-4496</td>
+<td>Fatima Bello | CUST-1195</td>
+<td>2021-04-30 00:00:00</td>
+<td>Standard Class</td>
+<td>NaN</td>
+<td>Desk</td>
+<td>Office Supplies</td>
+<td>125,00</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-4497</td>
+<td>Fatima Bello | CUST-1274</td>
+<td>invalid date</td>
+<td>First Class</td>
+<td>Texas</td>
+<td>Office Chair</td>
+<td>NaN</td>
+<td>49.99</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-4498</td>
+<td>Xiao Mei | CUST-1461</td>
+<td>2021-07-23 00:00:00</td>
+<td>Standard Class</td>
+<td>TX</td>
+<td>Pen Set</td>
+<td>Office supply</td>
+<td>125,00</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+              <h4>Batch 2 Dataset</h4>
+              <pre><code>
+df2
+              </code></pre>
+
+<table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Order ID</th>
+<th>Customer Info</th>
+<th>Order Date</th>
+<th>Ship Mode</th>
+<th>State</th>
+<th>Product Name</th>
+<th>Category</th>
+<th>Sales</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORD-4499</td>
+<td>Carlos O'Neil | CUST-0860</td>
+<td>2021-01-04 00:00:00</td>
+<td>Same Day</td>
+<td>calif.</td>
+<td>Notebook</td>
+<td>Technology</td>
+<td>NaN</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ORD-4500</td>
+<td>Ahmed Musa | CUST-0836</td>
+<td>2021-06-02 00:00:00</td>
+<td>Standard Class</td>
+<td>Florida</td>
+<td>Desk</td>
+<td>Technology</td>
+<td>49.99</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-4501</td>
+<td>Fatima Bello | CUST-1407</td>
+<td>2021-05-05 00:00:00</td>
+<td>Second Class</td>
+<td>Texas</td>
+<td>Desk</td>
+<td>Office supply</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-4502</td>
+<td>Ahmed Musa | CUST-1341</td>
+<td>2021-06-03 00:00:00</td>
+<td>standard class</td>
+<td>NaN</td>
+<td>Desk</td>
+<td>Technology</td>
+<td>$300</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-4503</td>
+<td>Fatima Bello | CUST-0047</td>
+<td>2021-01-29 00:00:00</td>
+<td>NaN</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>ORD-7995</td>
+<td>Ahmed Musa | CUST-1221</td>
+<td>2021-09-17 00:00:00</td>
+<td>Standard Class</td>
+<td>Texas</td>
+<td>Notebook</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-7996</td>
+<td>Xiao Mei | CUST-0226</td>
+<td>2021-09-05 00:00:00</td>
+<td>First Class</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>Office Supplies</td>
+<td>125,00</td>
+<td>3</td>
+</tr>
+<tr>
+<td>ORD-7997</td>
+<td>Carlos O'Neil | CUST-0856</td>
+<td>2021-01-25 00:00:00</td>
+<td>NaN</td>
+<td>Illinois</td>
+<td>Office Chair</td>
+<td>Furn</td>
+<td>$300</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-7998</td>
+<td>John Smith | CUST-0441</td>
+<td>2021-09-12 00:00:00</td>
+<td>Second Class</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>Office supply</td>
+<td>89.00</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-7999</td>
+<td>Ahmed Musa | CUST-0352</td>
+<td>2021-07-13 00:00:00</td>
+<td>Second Class</td>
+<td>TX</td>
+<td>Laptop</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+							<h3>2. Append the Two Datasets as combined_data Using <i>".concat()"</i></h3>
+							<pre><code>
+combined_data = pd.concat([df1,df2])
+							</code></pre>
+              <h4> Reset Index to Append the Dataset Index as One Using <i>".reset_index()"</i></h4>
+              <pre><code>
+combined_data.reset_index(drop = True, inplace = True)
+              </code></pre>
+
+							<h3>3. Split the Customer Info Column into Two Separate Columns (Customer Name & Customer ID) Using <i>".split()"</i> </h3>
+							<pre><code>
+combined_data[['Customer Name', 'CustomerID']] = combined_data['Customer Info'].str.split('|', expand = True)
+							</code></pre>
+
+							<h3>4. Delete the Customer Info Column Using <i>".drop()"</i></h3>
+							<pre><code>
+combined_data = combined_data.drop(columns = 'Customer Info')
+              </code></pre>
+              <h4>Moved Customer Name and CustomerID Columns to 2nd and 3rd position with <i>".iloc()"</i></h4>
+              <pre><code>
+combined_data = combined_data.iloc[:, [0,8,9,1,2,3,4,5,6,7]]
+              </code></pre>
+
+							<h3>5. Convert all Values in Order Date to Proper Date Format and Fill the Missing Date with the Default Date `2021-01-01 Using <i>".to_datetime()"</i> & <i>".fillna"</i></h3>
+							<pre><code>
+combined_data['Order Date'] = pd.to_datetime (combined_data['Order Date'], errors = 'coerce').fillna('2021-01-01')
+							</code></pre>
+
+							<h3>6. Fill Missing Rows in Ship Mode and State with Unknown Using <i>".fillna()"</i></h3>
+							<pre><code>
+combined_data[['Ship Mode','State']] = combined_data[['Ship Mode', 'State']].fillna('Unknown')
+							</code></pre>
+							<h4>Standardize the Ship Mode Column Using <i>".title()"</i></h4>
+              <pre><code>
+combined_data['Ship Mode'] = combined_data['Ship Mode'].str.title()
+              </code></pre>
+
+							<h3>7. Cleaned the `State` column  to Fix Variations (calif. → California, NY → New York, TX → Texas) Using <i>".replace()"</i> </h3>
+							<pre><code>
+combined_data['State'] = combined_data['State'].replace(['calif.', 'NY','TX'], ['California', 'New York', 'Texas'])
+							</code></pre>
+
+							<h3>8. Normalize Values to: Technology, Furniture, Office, Office Supplies. Using Logical Rules to Assign Consistent Category to each Product Using <i>"for loop"</i> with <i>"if"</i> Statement</h3>
+							<pre><code>
+for x in combined_data.index:
+    if combined_data.loc[x, 'Product Name'] in ('Office Chair', 'Desk'):
+        combined_data.loc[x, 'Category'] = 'Furniture'
+    elif combined_data.loc[x, 'Product Name'] in ('Monitor', 'Wireless Mouse', 'Laptop'):
+        combined_data.loc[x, 'Category'] = 'Technology'
+    else:
+        combined_data.loc[x, 'Category'] = 'Office supplies'
+							</code></pre>
+							
+							<h3>9. Fill Missing Rows in Sales and Quantity Column with '0' Using <i>".fillna()"</i></h3>
+							<pre><code>
+combined_data[['Sales', 'Quantity']] = combined_data[['Sales', 'Quantity']].fillna(0)
+							</code></pre>
+							<h4>Removed Currency, Comma and Text Values from Sales COlumn Using <i>".replace()"</i> & <i>".astype()"</i> to Change the Data Type to Float</h4>
+							<pre><code>
+combined_data['Sales'] = combined_data['Sales'].replace(['$300','125,00'],['300.00', '125.00']).astype(float)	
+							</code></pre>
+							
+							<h3>10. Replaced Five with '5' Using <i>".replace()</i> and Convert the Quantity Column to Integer Using <i>".astype()"</i></h3>
+							<pre><code>
+combined_data['Quantity'] = combined_data['Quantity'].replace('five', 5).astype(int)
+							</code></pre>
+
+							<h3>Q1. What is the Total Sales Values?</h3>
+							<pre><code>
+total_sales_value = combined_data['Sales'].sum()
+
+total_sales_value
+							</code></pre>
+							<h4>Output: 558071.45</h4>
+
+							<h3>Q2. How Many Customers used the Standard Class Ship Mode?</h3>
+							<pre><code>
+standard_class_count = (combined_data['Ship Mode'] == 'Standard Class').sum()
+
+standard_class_count
+							</code></pre>
+							<h4>Output: 2012</h4>
+
+							<h3>How many Unique Customers are in the Dataset?</h3>
+							<pre><code>
+o_of_unique_customers = combined_data['Customer Name'].nunique()
+
+no_of_unique_customers								
+							</code></pre>
+							<h4>Output: 6</h4>
+
+							<h2>Cleaned Data</h2>
+							<pre><code>
+combined_data
+							</code></pre>
+
+<table border="1" class="table-wrapper">
+<thead>
+<tr style="text-align: right;">
+<th>Order ID</th>
+<th>Customer Info</th>
+<th>Order Date</th>
+<th>Ship Mode</th>
+<th>State</th>
+<th>Product Name</th>
+<th>Category</th>
+<th>Sales</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ORD-4499</td>
+<td>Carlos O'Neil | CUST-0860</td>
+<td>2021-01-04 00:00:00</td>
+<td>Same Day</td>
+<td>calif.</td>
+<td>Notebook</td>
+<td>Technology</td>
+<td>NaN</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ORD-4500</td>
+<td>Ahmed Musa | CUST-0836</td>
+<td>2021-06-02 00:00:00</td>
+<td>Standard Class</td>
+<td>Florida</td>
+<td>Desk</td>
+<td>Technology</td>
+<td>49.99</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-4501</td>
+<td>Fatima Bello | CUST-1407</td>
+<td>2021-05-05 00:00:00</td>
+<td>Second Class</td>
+<td>Texas</td>
+<td>Desk</td>
+<td>Office supply</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-4502</td>
+<td>Ahmed Musa | CUST-1341</td>
+<td>2021-06-03 00:00:00</td>
+<td>standard class</td>
+<td>NaN</td>
+<td>Desk</td>
+<td>Technology</td>
+<td>$300</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-4503</td>
+<td>Fatima Bello | CUST-0047</td>
+<td>2021-01-29 00:00:00</td>
+<td>NaN</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>ORD-7995</td>
+<td>Ahmed Musa | CUST-1221</td>
+<td>2021-09-17 00:00:00</td>
+<td>Standard Class</td>
+<td>Texas</td>
+<td>Notebook</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-7996</td>
+<td>Xiao Mei | CUST-0226</td>
+<td>2021-09-05 00:00:00</td>
+<td>First Class</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>Office Supplies</td>
+<td>125,00</td>
+<td>3</td>
+</tr>
+<tr>
+<td>ORD-7997</td>
+<td>Carlos O'Neil | CUST-0856</td>
+<td>2021-01-25 00:00:00</td>
+<td>NaN</td>
+<td>Illinois</td>
+<td>Office Chair</td>
+<td>Furn</td>
+<td>$300</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>ORD-7998</td>
+<td>John Smith | CUST-0441</td>
+<td>2021-09-12 00:00:00</td>
+<td>Second Class</td>
+<td>Texas</td>
+<td>Pen Set</td>
+<td>Office supply</td>
+<td>89.00</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ORD-7999</td>
+<td>Ahmed Musa | CUST-0352</td>
+<td>2021-07-13 00:00:00</td>
+<td>Second Class</td>
+<td>TX</td>
+<td>Laptop</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+
+						<h2>Summary</h2>
+						<ul>
+										<li>Cleaned for consistency</li>
+										<li>Handled invalid or empty records</li>
+										<li><b>Added useful insight</b>: calculated Total Sales Value, No. of customers that used Standard Ship Mode & Unique CUstomers in the Dataset</li>
+										<li><b>Ensured data is usable for analytics</b> by converting columns to proper data types.</li>
+									</ul>
+
+							<h5>For further analysis and Interaction with the queries check the SQL file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/SuperStore-Sales-DataCleaning-Project-.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

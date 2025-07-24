@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>Nigeria Fintech Analysis - PowerBI Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/02.jpg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">An interactive Power BI dashboard analyzing ₦71M in Nigerian fintech transactions. The project uncovers customer trends by age, channel, and transaction type; highlights peak periods and failure rates; and provides actionable business insights to improve reliability and customer engagement.</p>
+						</div>
+
+							<h2>Objectives</h2>
+									<ol>
+										<li>What’s the trend of transaction volume and value across time (monthly)?</li>
+								  	<li>What age group transacts the most and through what channels?</li>
+                    <li>Are there any patterns in failed transactions (e.g., by platform, location, transaction type)?</li>
+                    <li>Is there a peak period (month/day) for financial transactions?</li>
+                    <li>Which transaction type is used the most?</li>
+                    <li>What is the average transaction amount by transaction type?</li>
+                    <li>Which platform/channel processes the most transactions in volume and value?</li>
+                    <li>What percentage of transactions were successful, failed, or pending?</li>
+                    <li>What does this data reveal about customer behavior and business performance? What would you advise the management to do?</li>
+									</ol>
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>Data Visualization</li>
+										<li>DAX</li>
+										<li>TStatistics</li>
+										<li>Power Query</li>
+										<li>KPI Calculation</li>
+									</ul>
+							</div>
+
+							<h2>Dataset</h2>
+							<div class="row">
+							<p>Size: Contains 7000 rows of Nigeria Fintech Data from the year 2023- 2024</p>
+							<p>Key Columns: <b> TransactionID</b>, <b>CustomerID</b>, <b>CustomerAge</b>, <b>Gender</b>, <b>Location</b>, <b>TransactionType</b>, <b>Chanenl</b>, <b>Amount</b>, <b>TransactionDate</b>, <b>Status</b>.</p>
+							<figure>
+  						<a href="images/project2/raw01.png" class="image fit thumb"><img src="images/project2/raw01.png" alt="Raw Dataset"></a>
+ 							 <figcaption>Raw Dataset</figcaption>
+							</figure>
+							</div>
+							
+								<h2>ETL Process (Extract, Transform and Load)</h2>
+							<p align = "justify">This process involved obtaining the data, loading to power query for cleaning and transformed it for analysis. The cleaning involves the formatting of key columns such as dates and currency.</p>
+
+							<h3> Calculated Metrics Using DAX</h3>
+							<p>The following Calculated Metrics were derived using DAX formula to drive decision-making.</p>
+							<h4>Calculated Columns</h4>
+							<ol>
+							<li>Month</li>
+							<ul>
+							<li>DAX Formula:</li>
+							<pre><code>
+Month = FORMAT('Nigerian Fintech'[TransactionDate].[Month],"YYYY-mm")
+							</code></pre>
+							<li> This is use to extract month name from the TransactionDate Column.</li>
+							</ul>
+							<li>MonthNo</li>
+							<ul>
+								<li>DAX Formula:</li>
+								<pre><code>
+MonthNo = MONTH('Nigerian Fintech'[TransactionDate].[Date])
+								</code></pre>
+								<li>This is use to extract month NO. from the TransactionDate column (month name is sort by this column to keep them in order during analysis)</li>
+							</ul>
+							<li>Age Group</li>
+							<ul>
+								<li>DAX Formula:</li>
+								<pre><code>
+Age Group = SWITCH(
+    TRUE(),
+    [CustomerAge] <= 25, "18-25",
+    [CustomerAge] <= 35, "26-35",
+    [CustomerAge] <= 45, "36-45",
+    [CustomerAge] <= 59, "46-59",
+    "60+"
+)
+								</code></pre>
+								<li>This is use to categorize the CustomerAge into different age bracket. </li>
+							</ul>
+							<li>Day</li>
+							<ul>
+								<li>DAX Formula:</li>
+							<pre><code>
+Day = FORMAT('Nigerian Fintech'[TransactionDate].[Date],"dddd")
+								</code></pre>
+								<li>This is use to extract day of the week name from the TransactionDate column.</li>
+							</ul>
+							<li>DayNo</li>
+							<ul>
+								<li>DAX Formula:</li>
+								<pre><code>
+DayNo = WEEKDAY('Nigerian Fintech'[TransactionDate].[Date],2)
+								</code></pre>
+								<li>This is use to extract day NO. from the TransactionDate column (day name is sort by this column to keep them in order during analysis)</li>
+							</ul>
+							</ol>
+							<h4>Calculated Measures</h4>
+							<ol>
+								<li>Average Amount</li>
+								<ul>
+									<li>DAX Formula:</li>
+									<pre><code>
+AverageAmount = AVERAGE('Nigerian Fintech'[Amount])
+									</code></pre>
+								</ul>
+								<li>Failure Rate(%)</li>
+								<ul>
+									<li>DAX Formula:</li>
+									<pre><code>
+FailureRate (%) = 
+DIVIDE(
+    CALCULATE(COUNTROWS('Nigerian Fintech'),'Nigerian Fintech'[Status] = "Failed"),
+    COUNTROWS('Nigerian Fintech')
+) * 100
+									</code></pre>
+								</ul>
+								<li> Formatted Total Amount</li>
+								<ul>
+									<li>DAX Formula:</li>
+									<pre><code>
+Formatted Total Amount = 
+VAR Num = SUM('Nigerian Fintech'[Amount])
+RETURN
+SWITCH(
+    TRUE(),
+    Num >= 1000000000, FORMAT(Num / 1000000000, "0.00") & "B",
+    Num >= 1000000, FORMAT(Num / 1000000, "0.00") & "M",
+    Num >= 1000, FORMAT(Num / 1000, "0.00") & "K",
+    FORMAT(Num, "0"))
+									</code></pre>
+								</ul>
+								<li>Transaction Value</li>
+								<ul>
+									<li>DAX Formula:</li>
+									<pre><code>
+Transaction Value = SUM('Nigerian Fintech'[Amount])
+									</code></pre>
+								</ul>
+								<li>Transaction Volume</li>
+								<ul>
+									<li>DAX Formula:</li>
+									<pre><code>
+Transaction Volume = COUNT('Nigerian Fintech'[TransactionID])
+									</code></pre>
+								</ul>
+							</ol>
+			
+						<h2>Modelling, Analysis and Visualization</h2>
+							<div class="row">
+									<h3>KPI</h3>
+									<ul>
+										<li>Total Transaction: 7000 – This is the total transactions made over the two years.</li>
+										<li>Total Transaction Value: ₦71.01M – The total transaction value over the two years.</li>
+										<li>Average Transaction Value: ₦10.14k – The average transaction value over the two years.</li>
+										<li> Failure Rate:10.30% – Percentage of failed Transactions.</li>
+									</ul>
+								<figure>
+  					<a href="images/project2/Kpi01.png" class="image fit thumb"><img src="images/project2/Kpi01.png" alt="KPIs"></a>
+  					<figcaption>KPIs</figcaption>
+						</figure>
+						</div>
+						<h3> Trend of transaction volume and value across time (monthly)</h3>
+						<ul>
+							<li>Both transaction volume and value fluctuate monthly.</li>
+							<li>Peaks in value and volume occur in May and July each above ₦6.4M in value.</li>
+							<li>Lows appear around February, June, and November when value dips below ₦5.6M.</li>
+						</ul>
+						<p><b>Insight:</b> Transaction activity is strongest mid-year, while early and late months see reduced activity.</p>
+						
+						<figure>
+						<a href="images/project2/PR1.png" class="image fit thumb"><img src="images/project2/PR1.png" alt="Transaction Value and Volume Month Trend"></a>
+						<figcaption>Transaction Value and Volume Month Trend</figcaption>
+						</figure>
+
+						<h3>Which age group transacts the most and through what channels?</h3>
+						<ul>
+							<li>Age group 46–59 has the highest transaction volume.</li>
+							<li>Followed by age groups 36–45 and 26–35.</li>
+							<li>The 46–59 group leans heavily on Agent and Mobile App, whereas younger groups are more evenly spread across channels.</li>
+						</ul>
+						<h4><b>Insight:</b> Older users (46–59) are the most active, especially on Agents</h4>
+						<figure>
+						<a href="images/project2/PR2.png" class="image fit thumb"><img src="images/project2/PR2.png" alt="Transaction Volume by Age Group and Channel"></a>
+						<figcaption>Transaction Volume by Age Group and Channel</figcaption>
+						</figure>
+						<h3>Patterns in failed transactions (platform, location, type)</h3>
+						<ul>
+							<li>Highest failure rates: Mobile App (11.7%), Agent (10.4%), and POS (10.3%).</li>
+							<li>Lower rates: Web (9.6%) and USSD (9.6%).</li>
+						</ul>
+						<h4><b>Insight:</b> Mobile App and Agent platforms face higher failure rates, indicating potential infrastructure or user experience challenges.</h4>
+						<figure>
+						<a href="images/project2/PR3.png" class="image fit thumb"><img src="images/project2/PR3.png" alt="FailureRate(%) by Channel"></a>
+						<figcaption>FailureRate(%) by Channel</figcaption>
+						</figure>
+						<h3>Peak period (day) for financial transactions:</h3>
+						<ul>
+							<li>Highest volumes: Monday (1031) and Friday (1025).</li>
+							<li>Lowest: Thursday (957).</li>
+						</ul>
+						<h4><b>Insight:</b>Start and end of the workweek have higher activity. </h4>
+						<figure>
+						<a href="images/project2/PR4.png" class="image fit thumb"><img src="images/project2/PR4.png" alt="Transaction Volume by Day"></a>
+						<figcaption>Transaction Volume by Day</figcaption>
+						</figure>
+
+						<h3>Which transaction type is used the most?</h3>
+						<ul>
+							<li>Highest volume: Payment (1213 transactions).</li>
+							<li>Close behind: Transfer (1193) and Deposit (1189).</li>
+						</ul>
+						<h4><b>Insight:</b> Payments are the most frequent transaction type.</h4>
+						<figure>
+						<a href="images/project2/PR5.png" class="image fit thumb"><img src="images/project2/PR5.png" alt="Transaction Volume by Transaction Type"></a>
+						<figcaption>Transaction Volume by Transaction Type</figcaption>
+						</figure>
+						<h3>Average transaction amount by transaction type</h3>
+						<ul>
+							<li>Highest: Transfer (₦10.5K).</li>
+							<li>Lowest: Loan Repayment and Withdrawal (₦9.9K).</li>
+						</ul>
+						<h4><b>Insight:</b> Transfers are typically higher in value than other types.</h4>
+						<figure>
+						<a href="images/project2/PR6.png" class="image fit thumb"><img src="images/project2/PR6.png" alt="Average Amount by Transaction Type"></a>
+						<figcaption>Average Amount by Transaction Type</figcaption>
+						</figure>
+
+						<h3> Which platform/channel processes the most transactions in volume and value?</h3>
+						<ul>
+							<li>Highest volume: Web (1480) and Agent (1445).</li>
+							<li>Highest value: Agent (₦15M) and Web (₦15M).</li>
+						</ul>
+						<h4><b>Insight:</b> Web and Agent handle the most transactions and value.</h4>
+						<figure>
+						<a href="images/project2/PR7.png" class="image fit thumb"><img src="images/project2/PR7.png" alt="Transaction Value and Volume by Channel "></a>
+						<figcaption>Transaction Value and Volume by Channel </figcaption>
+						</figure>
+						<h3>Percentage of transactions: successful, failed, pending</h3>
+						<ul>
+							<li>Successful: 84.79%</li>
+							<li>Failed: 10.30%</li>
+							<li>Pending: 4.91%</li>
+						</ul>
+						<h4><b>Insight:</b> Most transactions succeed; however, over 16% still encounter issues.</h4>
+						<figure>
+						<a href="images/project2/PR8.png" class="image fit thumb"><img src="images/project2/PR8.png" alt="Percentage of Transactions "></a>
+						<figcaption>Percentage of Transactions </figcaption>
+						</figure>
+
+						<h2>Dashboard</h2>
+						<figure>
+						<a href="images/project2/dsh01.jpg" class="image fit thumb"><img src="images/project2/dsh01.jpg" alt="Dashboard 1"></a>
+						<figcaption>Dashboard 1</figcaption>
+						</figure>
+						<figure>
+						<a href="images/project2/dsh02.jpg" class="image fit thumb"><img src="images/project2/dsh02.jpg" alt="Dashboard 2"></a>
+						<figcaption>Dashboard 2</figcaption>
+						</figure>
+
+						<h2> What the data reveals</h2>
+
+<h3> Customer behavior:</h3>
+<ul>
+  <li><strong>Channel use is balanced:</strong> Customers actively use multiple channels (Web, Agent, POS, USSD, Mobile App) almost evenly for transactions.</li>
+  <li><strong>Transaction type spread:</strong> Payments, transfers, and deposits lead transaction volume, but the average transaction amount is slightly higher for transfers and airtime.</li>
+  <li><strong>Age group:</strong> The 46–59 age group has the highest transaction volume, showing older users remain very engaged. Even younger groups (18–25, 26–35) transact steadily, though less than older users.</li>
+  <li><strong>Day of week:</strong> Activity is quite balanced across weekdays, peaking on Monday and Friday, and slightly dropping on Thursday and weekends.</li>
+</ul>
+
+<h3>Business performance:</h3>
+<ul>
+  <li><strong>Healthy total volume & value:</strong> ₦71.01M total value and 7000 transactions is strong.</li>
+  <li><strong>Average transaction value:</strong> ₦10.14K is modest, suggesting a mix of high and low-value transactions.</li>
+  <li><strong>Failure rate:</strong> Overall failure rate is 10.3%, with the highest on Mobile App (11.7%). USSD and Web perform better (~9.6%).</li>
+  <li><strong>Seasonal trend:</strong> Transactions peaked in January and July (~₦6.5M value, >600 transactions) and dipped in February, June, and November (₦5.2M–₦5.4M).</li>
+</ul>
+
+<h2>Insights & Recommendations</h2>
+<ul>
+  <li><strong>Reduce failure rates – especially on Mobile App and Agent channels:</strong>
+    <ul>
+      <li>Review technical performance, server reliability, and user interface flows.</li>
+      <li>Run usability tests to identify common user errors.</li>
+      <li>Strengthen backend infrastructure or partner service integrations that fail.</li>
+    </ul>
+  </li>
+  <li><strong>Targeted campaigns:</strong>
+    <ul>
+      <li><strong>Age-focused:</strong> Engage younger age groups (18–25) more with loyalty rewards, social media promotions, and student-friendly features.</li>
+      <li><strong>Transaction type:</strong> Boost lower-volume services (e.g., loan repayment, airtime) with bundle offers or discounts.</li>
+    </ul>
+  </li>
+  <li><strong>Channel optimization:</strong> Encourage use of more stable channels (USSD, Web) for critical transactions and invest in improving the Mobile App for easy access.</li>
+  <li><strong>Even out monthly dips:</strong> Offer seasonal promotions or campaigns in February, June, and November to smooth out transaction dips, and align product launches to these slower months.</li>
+  <li><strong>Improve average transaction value:</strong> Cross-sell products, upsell premium services, and encourage higher basket sizes through cashback or discount offers.</li>
+</ul>
+
+
+
+
+
+							<h5>For further analysis and Interaction with the Dashboard check the file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/Nigeria-Fintech-Analysis.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

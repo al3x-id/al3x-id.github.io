@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<title>Idowu Aluko | Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<script>
+  // Show the button when user scrolls down
+  window.onscroll = function() {
+    const topBtn = document.querySelector(".back-to-top");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top when button clicked
+  document.querySelector(".back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Idowu Aluko</strong>, a Data Analyst<br />
+					with hands-on experience using Excel, SQL, <br />
+					Power BI and Python</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+						<header class="major">
+							<h1><b>Employee Data Cleaning - SQL Project</b></h1>
+						</header>
+            <a class="image fit"><img src="images/fulls/03.jpg" alt="" /></a>
+						<h2>Project Overview</h2>
+						<style>
+   						</style>
+						<div class="row">						
+						<p style="line-height: 2.0;" align = "justify">This data contains 5,000 rows with 6 columns. The task is to clean this dataset and prepare it for analysis.
+						</p>
+						</div>
+
+							<h2>Objectives</h2>
+									<h4>1. Full Name</h4>
+									<ul>
+										<li>Standardize name formatting (proper case).</li>
+										<li>Remove leading/trailing/multiple spaces.</li>
+										<li>Ensure consistent spelling for same individuals and handle the duplicates (if duplicates exist).</li>
+									</ul>
+
+									<h4>2. Age</h4>
+									<ul>
+										<li>Convert all age entries to numeric values.</li>
+										<li>Handle entries like 'thirty', 'NaN', np.nan appropriately - change thirty to number, pay attention to the numbers that inform the others.</li>
+										<li>Remove or impute missing or invalid ages.</li>
+									</ul>
+
+								
+							<h4>3. Email</h4>
+									<ul>
+										<li>Ensure and validate  that the emails are in the right formats.</li>
+										<li>Identify and correct common mistakes (e.g., double @, missing domains).</li>
+										<li>Lowercase all emails and remove blanks or nulls.</li>
+							</ul>
+
+							<h4>4. Join Date</h4>
+									<ul>
+										<li>Convert all date formats into a standard DD-MMM-YYYY.</li>
+										<li>Handle invalid or missing date entries.</li>
+										<li>Consider deriving a new column: Years of Service.</li>
+							</ul>
+
+							<h4>5. Department</h4>
+									<ul>
+										<li>Standardize department names (e.g., HR, hr, Hr → HR).</li>
+										<li>Handle null or missing values.</li>
+										<li>Check for typos and harmonize department labels.</li>
+							</ul>
+
+							<h4>6. Salary</h4>
+									<ul>
+										<li>Convert all salary values to numeric</li>
+										<li>Remove characters like k, ,, and handle NaN, unknown, None.</li>
+										<li>Ensure all salaries are in a uniform currency and format.</li>
+							</ul>
+
+							<h4>Questions</h4>
+									<ul>
+										<li>What is the Average Age? </li>
+										<li>What is the Total Salary? </li>
+							</ul>
+
+							<h2>Skills Demonstrated</h2>
+							<div class="row">
+									<ul>
+										<li>Data Cleaning and Transformation</li>
+										<li>Text/String Manipulation</li>
+										<li>Date Formatting & Conversion</li>
+										<li>Data Type Conversion</li>
+										<li>Conditional Logic (CASE Statements)</li>
+										<li>Data Deduplication</li>
+										<li>Basic Analytics & Aggregation</li>
+										<li>Business Insight Communication</li>
+										<li>Data Validation</li>
+										<li>SQL Proficiency</li>
+										<ul>
+											<li>UPDATE, ALTER TABLE, CREATE TABLE, SELECT, CASE, CONCAT()</li>
+											<li>String functions (SUBSTRING_INDEX, TRIM, REPLACE)</li>
+											<li>Date functions (STR_TO_DATE, DATEDIFF)</li>
+											<li>Window functions (ROW_NUMBER())</li>
+										</ul>
+									</ul>
+							</div>
+
+							<h2>Dataset</h2>
+							<div class="row">
+							<p>Size: Contains 5000 rows with 6 columns of various employee</p>
+							<p>Key Columns: <b> Fullname</b>, <b>Age</b>, <b>Email</b>, <b>Join Date</b>, <b>Department</b>, <b>Salary</b>.</p>
+							<figure>
+  						<a href="images/project3/raw01.png" class="image fit thumb"><img src="images/project3/raw01.png" alt="Raw Dataset"></a>
+ 							 <figcaption>Raw Dataset</figcaption>
+							</figure>
+							</div>
+							
+							<h2>Cleaning Process</h2>
+							<p align = "justify">The excel file was imported into MySQl as a dataset named week1. Here's a step-by-step breakdown of the SQL script and what each part of the code does:</p>
+							<h3>1. Load and Duplicate Original Data</h3>
+							<pre><code>
+SELECT * FROM week1;
+							</code></pre>
+							<ul>
+								<li>This simply displays the original dataset named <b>week1</b></li>
+							</ul>
+							<pre><code>
+CREATE TABLE week1_copy AS
+SELECT * FROM week1;
+							</code></pre>
+							<ul>
+								<li>A copy of the dataset <b>(week1_copy)</b> is created to preserve the raw data and perform cleaning on a duplicate.</li>
+							</ul>
+
+							<h3>2. Standardize and Clean Full Name Column</h3>
+							<pre><code>
+UPDATE week1_copy
+SET `Full Name` = CONCAT(
+	UPPER(LEFT(SUBSTRING_INDEX(TRIM(REPLACE(`Full Name`, '.', ' ')), ' ', 1), 1)),
+	LOWER(SUBSTRING(SUBSTRING_INDEX(TRIM(REPLACE(`Full Name`, '.',' ')), ' ', 1), 2)),
+    ' ',
+	UPPER(LEFT(SUBSTRING_INDEX(TRIM(REPLACE(`Full Name`, '.',' ')), ' ', -1), 1)),
+	LOWER(SUBSTRING(SUBSTRING_INDEX(TRIM(REPLACE(`Full Name`, '.',' ')), ' ', -1), 2))
+);
+							</code></pre>
+							<ul>
+								<li>Standardizes <b>Full Name</b>:</li>
+								<ul>
+									<li>Replaces dots with spaces</li>
+									<li>Trims exta spaces</li>
+									<li>Converts first and last names to Proper Case</li>
+								</ul>
+							</ul>
+
+							<h3>3. Create Another Cleaned Version and Validated Email according to each Employee's Name </h3>
+							<pre><code>
+CREATE TABLE week1_copy1 AS
+SELECT `Full Name`, Age,
+ CASE
+	WHEN `Full Name` = 'Alice Johnson' THEN 'alice@gmail.com'
+    ...
+    ELSE 'mohamed@gmail.com'
+ END AS Email,
+`Join Date`, Department, Salary,
+ROW_NUMBER() OVER(PARTITION BY `Full Name`) AS rownumber
+FROM week1_copy
+WHERE TRIM(Age) <> 'NaN'
+AND TRIM(`Join Date`) NOT IN ('not a date','')
+AND TRIM(Department) <> ''
+AND TRIM(Salary) NOT IN ('', 'unknown', 'NaN')
+ORDER BY ROW_NUMBER() OVER(PARTITION BY `Full Name`)
+LIMIT 6;
+							</code></pre>
+							<ul>
+								<li>Creates <b>week1_copy1</b> with:</li>
+								<ul>
+									<li>Only valid entries (i.e., Age ≠ NaN, Join Date not blank or invalid, Department and Salary present).</li>
+									<li>Validate email addresses using a CASE statement.</li>
+									<li>Removes duplicate entries using ROW_NUMBER() logic and LIMIT 6.</li>
+								</ul>
+							</ul>
+
+							<h3>4. Fix and Convert Age Column</h3>
+							<pre><code>
+UPDATE week1_copy1
+SET Age = 30
+WHERE Age = 'thirty';
+
+ALTER TABLE week1_copy1
+MODIFY COLUMN Age INT;
+							</code></pre>
+							<ul>
+								<li>Replaces the text "thirty" with the numeric 30.</li>
+								<li>Converts the entire Age column to INT datatype.</li>
+							</ul>
+
+							<h3>5. Standardize Join Date Format</h3>
+							<pre><code>
+UPDATE week1_copy1
+SET `Join Date` = CASE 
+    WHEN `Join Date` LIKE '__-___-____' THEN STR_TO_DATE(`Join Date`, '%d-%b-%Y')
+    WHEN `Join Date` LIKE '____/__/__' THEN STR_TO_DATE(`Join Date`, '%Y/%m/%d')
+    WHEN `Join Date` LIKE '__-__-____' THEN STR_TO_DATE(`Join Date`, '%d-%m-%Y')
+    ELSE NULL
+END;
+
+ALTER TABLE week1_copy1
+MODIFY COLUMN `Join Date` DATE;
+							</code></pre>
+							<ul>
+								<li>Converts dates in different formats (e.g., 01-Jan-2022, 2022/01/01, 01-12-2021) to MySQL's standard DATE format.</li>
+								<li>Sets column type to DATE.</li>
+							</ul>
+
+							<h3>6. Standardize Department Names</h3>
+							<pre><code>
+UPDATE week1_copy1
+SET Department = 
+CASE
+	WHEN Department = 'HR' THEN UPPER(Department)
+    ELSE CONCAT(UPPER(LEFT(Department, 1)), LOWER(SUBSTRING(Department, 2)))
+END;
+							</code></pre>
+							<ul>
+								<li>Converts 'HR' to uppercase</li>
+								<li>For all other department names:</li>
+								<ul>
+									<li>Capitalizes the first letter.</li>
+									<li>Converts the rest to lowercase.</li>
+								</ul>
+							</ul>
+
+							<h3>7. Clean and Convert Salary Column</h3>
+							<pre><code>
+UPDATE week1_copy1
+SET Salary = 
+CASE
+	WHEN Salary = '75k' THEN 75000
+    WHEN Salary = '50000.00' THEN 50000
+    WHEN Salary = '80,000' THEN 80000
+    ELSE 100000
+END;
+
+ALTER TABLE week1_copy1
+MODIFY COLUMN Salary INT;
+
+							</code></pre>
+							<ul>
+								<li>Converts various formats of salary strings to numeric integers:</li>
+								<ul>
+									<li>'75k' → 75000</li>
+									<li>'80,000' → 80000</li>
+									<li>'50000.00' → 50000</li>
+									<li>Defaults to 100000 for others.</li>
+								</ul>
+								<li>Converts Salary column to integer.</li>
+							</ul>
+
+							<h3>8. Derive Years of Service</h3>
+							<pre><code>
+ALTER TABLE week1_copy1
+ADD COLUMN `Years of Service` INT;
+
+UPDATE week1_copy1
+SET `Years of Service`= FLOOR(DATEDIFF(CURRENT_DATE(), `Join Date`)/365);
+
+							</code></pre>
+							<ul>
+								<li>Adds a new column Years of Service.</li>
+								<li>Calculates it as the number of full years from Join Date to today.</li>
+							</ul>
+
+							<h3>9. Final Clean Up</h3>
+							<pre><code>
+ALTER TABLE week1_copy1
+DROP COLUMN rownumber;
+
+							</code></pre>
+							<ul>
+								<li>Removes the rownumber column used to filter duplicates earlier.</li>
+							</ul>
+
+							<h3>10. Summary Queries</h3>
+							<pre><code>
+SELECT ROUND(AVG(Age), 2) AS `Average Age` FROM week1_copy1;
+							</code></pre>
+							<ul>
+								<li>Calculates the average age, rounded to 2 decimal places — 36.67.</li>
+							</ul>
+							<pre><code>
+SELECT SUM(Salary) AS `Total Salary` FROM week1_copy1;
+							</code></pre>
+							<ul>
+								<li>Returns the total salary sum of all cleaned entries — 480000.</li>
+							</ul>
+							<pre><code>
+SELECT * FROM week1_copy1;
+							</code></pre>
+							<ul>
+								<li>Displays the final, cleaned, and transformed dataset.</li>
+							</ul>
+						<figure>
+  					<a href="images/project3/Clean01.png" class="image fit thumb"><img src="images/project3/Clean01.png" alt="Cleaned Dataset"></a>
+  					<figcaption>Cleaned Dataset</figcaption>
+						</figure>
+
+						<h2>Summary</h2>
+						<ul>
+										<li><b>Cleaned for consistency</b>: names, email, dates and salary</li>
+										<li>Removed invalid or empty records</li>
+										<li><b>Added useful insight</b>: calculated years of service.</li>
+										<li><b>Ensured data is usable for analytics</b> by converting columns to proper types.</li>
+									</ul>
+
+							<h5>For further analysis and Interaction with the queries check the SQL file below</h5>
+									<ul class="actions small">
+								<li><a href="https://github.com/al3x-id/Employee-Data-Cleaning.git" class="button primary small">Click here</a></li>
+							</ul>
+
+
+							<ul class="actions">
+							<li><a href="index.html" class="button">Back</a></li>
+						</ul>
+					</div>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/idowu-aluko-516b1a354" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+						<li><a href="https://github.com/al3x-id" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto: idowualuko58@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+			<a href="#" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
